@@ -4,7 +4,7 @@
 
 ******************************
 
-변경사항
+v2.0 변경사항
 =======
 - XML → Java Configuration
 - JPA → Mybatis
