@@ -1,10 +1,10 @@
-# CoffeeReview-v2.0
+# CoffeeReview-v2
 기존 CoffeeReview의 개선을 진행하는 프로젝트 입니다.
 > https://github.com/93HSpring/CoffeeReview
 
 ******************************
 
-v2.0 변경사항
+v2 변경사항
 =======
 - XML → Java Configuration
 - JPA → Mybatis
