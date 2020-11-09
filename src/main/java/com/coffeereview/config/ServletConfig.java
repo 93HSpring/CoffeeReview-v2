@@ -8,6 +8,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+/**
+* @packageName   : com.coffeereview.config
+* @fileName      : ServletConfig.java
+* @author        : SeongPyo Jo
+* @date          : 2020.10.29
+* @description   :
+* ===========================================================
+* DATE              AUTHOR             NOTE
+* -----------------------------------------------------------
+* 2020.10.29        SeongPyo Jo       최초 생성
+*/
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.coffeereview.controller" })
 public class ServletConfig implements WebMvcConfigurer {
