@@ -6,13 +6,28 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+* @packageName   : com.coffeereview.config
+* @fileName      : RootConfig.java
+* @author        : SeongPyo Jo
+* @date          : 2020.10.29
+* @description   : Spring의 Root 설정
+* ===========================================================
+* DATE              AUTHOR             NOTE
+* -----------------------------------------------------------
+* 2020.10.29        SeongPyo Jo       최초 생성
+* 2020.10.29        SeongPyo Jo       서비스 객체 설정 (ComponentScan)
+*/
+
 @Configuration
-@MapperScan(basePackages= {"com.coffeereview.mapper"})
+@ComponentScan(basePackages = "com.coffeereview.service")
+@MapperScan(basePackages = {"com.coffeereview.mapper"})
 public class RootConfig {
 	
 	// 커넥션 풀 설정
