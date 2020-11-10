@@ -48,6 +48,12 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 
+# ojdbc
+.classpath
+
+# Eclipse
+MANIFEST.MF
+
 # Code Recommenders
 .recommenders/
 
