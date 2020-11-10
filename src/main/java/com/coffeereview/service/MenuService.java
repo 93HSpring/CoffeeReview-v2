@@ -2,11 +2,11 @@ package com.coffeereview.service;
 
 import java.util.List;
 
-import com.coffeereview.domain.CafeVO;
+import com.coffeereview.domain.MenuVO;
 
 /**
 * @packageName   : com.coffeereview.service
-* @fileName      : CafeService.java
+* @fileName      : MenuService.java
 * @author        : SeongPyo Jo
 * @date          : 2020.10.29
 * @description   : SQL을 처리하기 위한 요청을 하기위한 인터페이스
@@ -15,12 +15,13 @@ import com.coffeereview.domain.CafeVO;
 * -----------------------------------------------------------
 * 2020.10.29        SeongPyo Jo       최초 생성
 * 2020.11.10        SeongPyo Jo       메쏘드 이름 변경(get -> getCafeMenu)
+* 2020.11.10        SeongPyo Jo       클래스 및 메쏘드 이름 변경(cafe -> menu)
 */
 
-public interface CafeService {
+public interface MenuService {
 	
-	public CafeVO getCafeMenu(Long cno);
+	public MenuVO getMenu(Long cno);
 	
-	public List<CafeVO> getCafeList();
+	public List<MenuVO> getMenuList();
 
 }

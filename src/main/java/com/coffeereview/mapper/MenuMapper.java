@@ -4,11 +4,11 @@ import java.util.List;
 
 //import org.apache.ibatis.annotations.Select;
 
-import com.coffeereview.domain.CafeVO;
+import com.coffeereview.domain.MenuVO;
 
 /**
 * @packageName   : com.coffeereview.mapper
-* @fileName      : CafeMapper.java
+* @fileName      : MenuMapper.java
 * @author        : SeongPyo Jo
 * @date          : 2020.10.29
 * @description   : Mybatis 처리를 위한 매핑 인터페이스
@@ -17,13 +17,14 @@ import com.coffeereview.domain.CafeVO;
 * -----------------------------------------------------------
 * 2020.10.29        SeongPyo Jo       최초 생성
 * 2020.11.10        SeongPyo Jo       메쏘드 이름 변경(get -> getCafeMenu)
+* 2020.11.10        SeongPyo Jo       클래스 및 메쏘드 이름 변경(cafe -> menu)
 */
 
-public interface CafeMapper {
+public interface MenuMapper {
 	
 	//@Select("select * from tbl_cafe where cno > 0")
-	public List<CafeVO> getCafeList();
+	public List<MenuVO> getMenuList();
 	
-	public CafeVO getCafeMenu(Long cno);
+	public MenuVO getMenu(Long mno);
 
 }
