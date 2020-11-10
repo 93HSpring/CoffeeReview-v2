@@ -32,8 +32,8 @@ v2 변경사항
 - HikariCP 2.7.4
 
 ### 프론트 (예정)
-- HTML, CSS, Javascript, Jquery
-- bootstrap
+- HTML, CSS, Javascript, JQuery
+- Bootstrap
 - SB Admin2 (예정)
 
 ### DB
