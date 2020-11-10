@@ -9,7 +9,7 @@ v2 변경사항
 - XML → Java Configuration
 - JPA → Mybatis
 - AdminLTE → SB Admin2
-- MariaDB → Oracle 11g express edition
+- <del>MariaDB → Oracle 11g express edition</del>
 - 백엔드, 프론트엔드 기능 보완 및 추가 (진행이 완료되는데로 자세한 사항 추가)
 
 ******************************
