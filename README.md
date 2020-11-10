@@ -37,7 +37,7 @@ v2 변경사항
 - SB Admin2 (예정)
 
 ### DB
-- Oracle 11g express edition
+- MariaDB
 
 ### 서버
 - Apache-Tomcat 9.0.39
