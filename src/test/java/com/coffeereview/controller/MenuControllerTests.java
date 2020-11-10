@@ -36,7 +36,7 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration(classes = {com.coffeereview.config.RootConfig.class,
 								 com.coffeereview.config.ServletConfig.class})
 @Log4j
-public class CafeControllerTests {
+public class MenuControllerTests {
 	
 	@Setter(onMethod_ = {@Autowired})
 	private WebApplicationContext ctx;
@@ -59,7 +59,7 @@ public class CafeControllerTests {
 	public void testGetCafeList() throws Exception {
 		
 		log.info("testGetCafeList..." +
-				mockMvc.perform(MockMvcRequestBuilders.get("/cafe/list"))
+				mockMvc.perform(MockMvcRequestBuilders.get("/menu/list"))
 				.andReturn()
 				.getModelAndView()
 				.getModelMap()
@@ -71,7 +71,7 @@ public class CafeControllerTests {
 	public void testGetCafeMenu() throws Exception {
 		
 		log.info("testGetCafeMenu..." +
-				mockMvc.perform(MockMvcRequestBuilders.get("/cafe/menu").param("cno", "1"))				
+				mockMvc.perform(MockMvcRequestBuilders.get("/menu/info").param("mno", "1"))				
 				.andReturn()
 				.getModelAndView()
 				.getModelMap()
