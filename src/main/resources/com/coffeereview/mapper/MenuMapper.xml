@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="getMenuList" resultType="com.coffeereview.domain.MenuVO">
 	<![CDATA[
-	select * from tbl_menu where mno > 0
+	select * from tbl_menu where cafe = #{cafe}
 	]]>
 </select>
 
