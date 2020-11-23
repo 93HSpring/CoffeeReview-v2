@@ -5,13 +5,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.coffeereview.mapper.MenuMapper">
 
 <select id="getMenuList" resultType="com.coffeereview.domain.MenuVO">
+
 	<![CDATA[
-	select * from tbl_menu where cafe = #{cafe}
+		select 
+			* 
+		from 
+			tbl_menu 
+		where 
+			cafe = #{cafe}
 	]]>
+	
 </select>
 
 <select id="getMenu" resultType="com.coffeereview.domain.MenuVO">
-	select * from tbl_menu where mno = #{mno}
+
+	select 
+		* 
+	from 
+		tbl_menu 
+	where 
+		mno = #{mno}
+		
+</select>
+
+<select id="getMenuListWithPaging" resultType="com.coffeereview.domain.MenuVO">
+
+	<![CDATA[
+		SELECT
+			@rownum:=@rownum+1 as no, 
+			mno, menu, cafe, star_avg
+		FROM 
+			tbl_menu
+		WHERE
+			mno > 0 AND cafe = #{cafe}
+		LIMIT
+			#{pageStart}, #{amount};
+	]]>
+	
+</select>
+
+<select id="getTotalCount" resultType="int">
+	select 
+		count(*) 
+	from 
+		tbl_menu 
+	where 
+		mno > 0 and cafe = #{cafe}
 </select>
 
 </mapper>
