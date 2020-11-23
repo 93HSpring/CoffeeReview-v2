@@ -25,13 +25,13 @@
             <div class="row">
                 <c:forEach items="${list}" var="menuInfo">
 	                    <div class="col-xs-6 col-sm-6 col-md-3">
-	                    	<a href="http://localhost:8090/menu/info?mno=${menuInfo.mno}">
+	                    	<a href="/menu/info?mno=${menuInfo.mno}">
 	                    	<div class="panel panel-default">
 	                        	<div class="mname panel-heading text-center">
 	                        		<c:out value="${menuInfo.menu}" />
 	                        	</div>
 	                        	<div class="panel-body p-0">
-	                        		<img src='/menu/display?menuName=STARBUCKS/${menuInfo.menu}' class="full-width">
+	                        		<img src="/menu/display?menuName=STARBUCKS/${menuInfo.menu}" class="full-width">
 	                        	</div>
 	                        	<div class="panel-footer text-center">
 	                        		<p class="fa fa-star m-0">

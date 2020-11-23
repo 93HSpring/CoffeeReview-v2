@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Coffee Review</a>
+                <a class="navbar-brand" href="#">Coffee Review</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -241,10 +241,10 @@
                             <a href="#"><i class="fa fa-coffee fa-fw"></i> Cafes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">STARBUCKS</a>
+                                    <a href="/menu/list?cafe=STARBUCKS">STARBUCKS</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">COFFEEBEAN</a>
+                                    <a href="#">COFFEEBEAN</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
