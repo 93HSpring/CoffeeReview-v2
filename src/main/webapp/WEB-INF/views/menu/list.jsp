@@ -23,23 +23,25 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <c:forEach items="${list}" var="menu">
-                    <div class="col-xs-6 col-sm-6 col-md-3">
-                    	<div class="panel panel-default">
-                        	<div class="mname panel-heading text-center">
-                        		<c:out value="${menu.menu}" />
-                        	</div>
-                        	<div class="panel-body p-0">
-                        		<img src='/menu/display?menuName=STARBUCKS/${menu.menu}' class="full-width">
-                        	</div>
-                        	<div class="panel-footer text-center">
-                        		<p class="fa fa-star m-0">
-                        		<c:out value="${menu.star_avg}" />
-                        	</div>
-                        </div>
-                    <!-- /.panel -->
-                	</div>
-                <!-- /.col-xs-3 -->
+                <c:forEach items="${list}" var="menuInfo">
+	                    <div class="col-xs-6 col-sm-6 col-md-3">
+	                    	<a href="http://localhost:8090/menu/info?mno=${menuInfo.mno}">
+	                    	<div class="panel panel-default">
+	                        	<div class="mname panel-heading text-center">
+	                        		<c:out value="${menuInfo.menu}" />
+	                        	</div>
+	                        	<div class="panel-body p-0">
+	                        		<img src='/menu/display?menuName=STARBUCKS/${menuInfo.menu}' class="full-width">
+	                        	</div>
+	                        	<div class="panel-footer text-center">
+	                        		<p class="fa fa-star m-0">
+	                        		<c:out value="${menuInfo.star_avg}" />
+	                        	</div>
+	                        </div>
+	                    	<!-- /.panel -->
+	                    	</a>
+	                	</div>
+                	<!-- /.col-xs-3 -->
                 </c:forEach>
             </div>
             <!-- /.row -->
