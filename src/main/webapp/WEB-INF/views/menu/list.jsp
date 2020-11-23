@@ -17,28 +17,30 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">카페 이름</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Menu List Page
+                <c:forEach items="${list}" var="menu">
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                    	<div class="panel panel-default">
+                        	<div class="mname panel-heading text-center">
+                        		<c:out value="${menu.menu}" />
+                        	</div>
+                        	<div class="panel-body p-0">
+                        		<img src='/menu/display?menuName=STARBUCKS/${menu.menu}' class="full-width">
+                        	</div>
+                        	<div class="panel-footer text-center">
+                        		<p class="fa fa-star m-0">
+                        		<c:out value="${menu.star_avg}" />
+                        	</div>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            
-                            
-                            
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
                     <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
+                	</div>
+                <!-- /.col-xs-3 -->
+                </c:forEach>
             </div>
             <!-- /.row -->
         </div>
@@ -49,6 +51,12 @@
 
     <!-- plugin-js -->
     <%@include file="../includes/plugin_js.jsp" %>
+    
+    <script>
+    
+    	$.getJSON("/menu/display", {fileName : "나이트로 쇼콜라 클라우드"}, function())
+    
+    </script>
 
 </body>
 
