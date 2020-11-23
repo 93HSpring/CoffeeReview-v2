@@ -23,24 +23,24 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-xs-3">
-                    <div class="panel panel-default">
-                        <c:forEach items="${list}" var="menu">
-                        	<div class="panel-heading text-center">
+                <c:forEach items="${list}" var="menu">
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                    	<div class="panel panel-default">
+                        	<div class="mname panel-heading text-center">
                         		<c:out value="${menu.menu}" />
                         	</div>
                         	<div class="panel-body p-0">
-                        		<img src='/menu/display?fileName=STARBUCKS/나이트로 쇼콜라 클라우드' class="full-width">
+                        		<img src='/menu/display?menuName=STARBUCKS/${menu.menu}' class="full-width">
                         	</div>
                         	<div class="panel-footer text-center">
                         		<p class="fa fa-star m-0">
                         		<c:out value="${menu.star_avg}" />
                         	</div>
-                        </c:forEach>
-                    </div>
+                        </div>
                     <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
+                	</div>
+                <!-- /.col-xs-3 -->
+                </c:forEach>
             </div>
             <!-- /.row -->
         </div>

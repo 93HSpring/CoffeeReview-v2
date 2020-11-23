@@ -41,5 +41,6 @@
     
     <!-- Import CSS -->
     <link href="/resources/css/common.css" rel="stylesheet">
+    <link href="/resources/css/list.css" rel="stylesheet">
 
 </head>

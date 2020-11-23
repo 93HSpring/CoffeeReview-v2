@@ -61,11 +61,11 @@ public class MenuController {
 	
 	@GetMapping("/display")
 	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName) {
+	public ResponseEntity<byte[]> getFile(String menuName) {
 		
-		log.info("fileName : " + fileName);
+		log.info("fileName : " + menuName);
 		
-		File file = new File("c:\\upload\\" + fileName + ".jpg");
+		File file = new File("c:\\upload\\" + menuName + ".jpg");
 		
 		log.info("file: " + file);
 		
