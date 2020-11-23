@@ -17,6 +17,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
+                	<button data-oper='list' class="btn btn-info pull-right">List</button>
+                	
+                	<form id='operForm' action="/menu/list" method="get">
+                		<input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
+                		<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+                		<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+                	</form>
+                	
                     <h1 class="page-header">${menuInfo.cafe}</h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -61,6 +69,7 @@
                        	<div class="panel-footer">
                        		
                        	</div>
+         
                        </div>
                     <!-- /.panel -->
                 	</div>
@@ -77,9 +86,19 @@
     <%@include file="../includes/plugin_js.jsp" %>
     
     <script>
-    
-    	$.getJSON("/menu/display", {fileName : "나이트로 쇼콜라 클라우드"}, function())
-    
+    $(document).ready(function() {
+		
+		var operForm = $("#operForm");
+		
+		$("button[data-oper='list']").on("click", function(e) {
+
+			operForm.find("#mno").remove();
+			operForm.attr("action", "/menu/list")
+			operForm.submit();
+			
+		});
+
+	});
     </script>
 
 </body>

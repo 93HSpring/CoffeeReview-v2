@@ -1,11 +1,14 @@
 package com.coffeereview.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.coffeereview.domain.Criteria;
 import com.coffeereview.domain.MenuVO;
 
 import lombok.Setter;
@@ -33,13 +36,15 @@ public class MenuMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MenuMapper mapper;
 	
+	/*
 	@Test
 	public void testGetCafeList() {
 		
-		mapper.getMenuList().forEach(menu -> log.info(menu));
+		mapper.getMenuList("STARBUCKS").forEach(menu -> log.info(menu));
 		
-	}
+	}*/
 	
+	/*
 	@Test
 	public void testGetCafeMenu() {
 		
@@ -47,6 +52,16 @@ public class MenuMapperTests {
 		MenuVO menu = mapper.getMenu(1L);
 		
 		log.info("Read.........." + menu);
+		
+	}
+	*/
+	
+	@Test
+	public void testPaging() {
+		
+		Criteria cri = new Criteria(2, 10, "STARBUCKS");
+		
+		mapper.getMenuListWithPaging(cri).forEach(menu -> log.info(menu));
 		
 	}
 	

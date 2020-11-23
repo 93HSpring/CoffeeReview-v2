@@ -55,6 +55,8 @@ public class MenuControllerTests {
 	
 	// MockMvcRequestBuilders를 이용해서 GET 방식의 호출을 한다.
 	// 이후 반환된 결과를 이용해서 Model에 어떤 데이터들이 담겨 있는지 확인
+	
+	/*
 	@Test
 	public void testGetCafeList() throws Exception {
 		
@@ -66,7 +68,9 @@ public class MenuControllerTests {
 				);
 		
 	}
+	*/
 	
+	/*
 	@Test
 	public void testGetCafeMenu() throws Exception {
 		
@@ -76,6 +80,19 @@ public class MenuControllerTests {
 				.getModelAndView()
 				.getModelMap()
 				);
+		
+	}
+	*/
+	
+	@Test
+	public void testListPagin() throws Exception {
+		
+		log.info(mockMvc.perform(
+			MockMvcRequestBuilders.get("/menu/list")
+			.param("pageNum", "2")
+			.param("amount", "50")
+			.param("cafe", "STARBUCKS"))
+			.andReturn().getModelAndView().getModelMap());
 		
 	}
 	

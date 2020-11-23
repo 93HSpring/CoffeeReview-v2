@@ -241,7 +241,7 @@
                             <a href="#"><i class="fa fa-coffee fa-fw"></i> Cafes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/menu/list?cafe=STARBUCKS">STARBUCKS</a>
+                                    <a href="/menu/list?pageNum=1&amount=12&cafe=STARBUCKS">STARBUCKS</a>
                                 </li>
                                 <li>
                                     <a href="#">COFFEEBEAN</a>
