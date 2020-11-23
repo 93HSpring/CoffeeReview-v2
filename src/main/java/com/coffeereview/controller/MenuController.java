@@ -34,6 +34,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.10        SeongPyo Jo       클래스 및 메쏘드 이름 변경(cafe -> menu)
 * 2020.11.23        SeongPyo Jo       메뉴 이미지 출력을 위한 getFile 추가
 * 2020.11.23        SeongPyo Jo       getFile 메쏘드 파라미터 이름 변경 (fileName -> menuName)
+* 2020.11.23        SeongPyo Jo       getCafeMenu 모델 파라미터 이름 변경 (menu -> menuInfo)
 */
 
 @Controller
@@ -56,7 +57,7 @@ public class MenuController {
 	public void getCafeMenu(@RequestParam("mno") Long mno, Model model) {
 		
 		log.info("/info");
-		model.addAttribute("menu", service.getMenu(mno));
+		model.addAttribute("menuInfo", service.getMenu(mno));
 		
 	}
 	
