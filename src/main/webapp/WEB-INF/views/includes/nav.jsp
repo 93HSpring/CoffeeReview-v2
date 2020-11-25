@@ -227,24 +227,36 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+                        	<!-- 검색 처리 -->
+	            			<form id='searchForm' action="/menu/list" method='get'>
+	            				<select name='cafe' class="form-control">
+	            					<option value="" <c:out value="${pageMaker.cri.cafe == null ? 'selected' : ''}" />>--</option>
+            						<option value="STARBUCKS" <c:out value="${pageMaker.cri.cafe == 'STARBUCKS' ? 'selected' : ''}" />>STARBUCKS</option>
+            						<option value="COFFEEBEAN" <c:out value="${pageMaker.cri.cafe == 'COFFEEBEAN' ? 'selected' : ''}" />>COFFEEBEAN</option>
+	            				</select>
+                           	
+                           	<!-- 검색 처리 끝 -->
+	                            <div class="input-group custom-search-form">
+	                                <input type="text" name='keyword' class="form-control" placeholder="메뉴를 입력하세요..." value='<c:out value="${pageMaker.cri.keyword}" />' />
+	                                <input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}" />' />
+	                                <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />' />
+	                                <span class="input-group-btn">
+		                                <button class="btn btn-default" type="button">
+		                                    <i class="fa fa-search"></i>
+		                                </button>
+	                            	</span>
+	                            </div>
+                            </form>
                             <!-- /input-group -->
                         </li>                        
                         <li>
                             <a href="#"><i class="fa fa-coffee fa-fw"></i> Cafes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/menu/list?pageNum=1&amount=12&cafe=STARBUCKS">STARBUCKS</a>
+                                    <a href="/menu/list?cafe=STARBUCKS&pageNum=1&amount=12">STARBUCKS</a>
                                 </li>
                                 <li>
-                                    <a href="#">COFFEEBEAN</a>
+                                    <a href="/menu/list?cafe=COFFEEBEAN&pageNum=1&amount=12">COFFEEBEAN</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

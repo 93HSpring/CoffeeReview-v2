@@ -14,6 +14,7 @@ import lombok.ToString;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.11.23        SeongPyo Jo       최초 생성
+* 2020.11.23        SeongPyo Jo       검색 키워드 추가
 */
 
 @Getter
@@ -28,10 +29,15 @@ public class Criteria {
 	// 한 페이지당 몇 개의 데이터인지 설정
 	private int amount;
 	
+	// 검색 타입
+	private String type;
+	// 검색 키워드
+	private String keyword;
+	
 	public Criteria() {
 		
 		// 기본 페이지는 1페이지, 12개의 데이터를 보여줌
-		this(1, 12, "STARBUCKS");
+		// this(1, 12, "STARBUCKS");
 		
 	}
 	
