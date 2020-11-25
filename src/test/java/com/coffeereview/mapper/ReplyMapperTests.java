@@ -1,5 +1,6 @@
 package com.coffeereview.mapper;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.coffeereview.domain.Criteria;
 import com.coffeereview.domain.ReplyVO;
 
 import lombok.Setter;
@@ -68,6 +70,7 @@ public class ReplyMapperTests {
 	}
 	*/
 	
+	/*
 	@Test
 	public void testUpdate() {
 		
@@ -80,6 +83,19 @@ public class ReplyMapperTests {
 		int count = mapper.update(vo);
 		
 		log.info("UPDATE COUNT : " + count);
+		
+	}
+	*/
+	
+	@Test
+	public void testList() {
+		
+		Criteria cri = new Criteria();
+		
+		// mno가 1인 게시글
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, mnoArr[0]);
+		
+		replies.forEach(reply -> log.info(reply));
 		
 	}
 	

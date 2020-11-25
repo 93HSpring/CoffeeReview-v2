@@ -43,5 +43,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			rno = #{rno}
 		
 	</update>
+	
+	<select id="getListWithPaging" resultType="com.coffeereview.domain.ReplyVO">
+	
+		select
+			*
+		from
+			tbl_reply
+		where
+			mno = #{mno}
+		order by 
+			rno asc
+		
+	</select>
 
 </mapper>
