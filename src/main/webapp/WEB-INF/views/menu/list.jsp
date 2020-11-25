@@ -17,7 +17,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">카페 이름</h1>
+                    <h1 class="page-header">메뉴</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -52,27 +52,28 @@
             	<ul class="pagination">
             		<c:if test="${pageMaker.prev}">
             			<li class="paginate_button previous">
-            				<a href="${pageMaker.startPage - 1}">Previous</a>
+            				<a href='<c:out value="${pageMaker.startPage - 1}"/>'>Previous</a>
             			</li>
             		</c:if>
             			
             		<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
             			<li class="<c:out value= "${pageMaker.cri.pageNum == num ? 'paginate_button active': 'paginate_button'}" />">
-            				<a href="${num}">${num}</a>
+            				<a href='<c:out value="${num}"/>'>${num}</a>
             			</li>
             		</c:forEach>
             		
             		<c:if test="${pageMaker.next}">
             			<li class="paginate_button next">
-            				<a href="${pageMaker.endPage + 1}">Next</a>
+            				<a href='<c:out value="${pageMaker.endPage + 1}"/>'>Next</a>
             			</li>
             		</c:if>            		
             	</ul>
             </div>
             <form id='actionForm' action="/menu/list" method='get'>
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-				<input type='hidden' name='cafe' value='${pageMaker.cri.cafe}'>
+            	<input type='hidden' name='cafe' value='<c:out value="${pageMaker.cri.cafe}" />'>
+            	<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword}" />'>
+				<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}" />'>
+				<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />'>
 			</form>
             <!-- 페이징 처리 끝 -->            
             <!-- /.row -->
@@ -91,6 +92,7 @@
     		
     		var actionForm = $("#actionForm");
     		
+    		// 페이지를 눌러 이동 시
     		$(".paginate_button a").on("click", function(e) {
 
 				e.preventDefault();
@@ -102,6 +104,7 @@
 				actionForm.submit();
 			});
     		
+    		// 메뉴 정보로 이동 시
     		$(".move").on("click", function(e) {
     			
     			e.preventDefault();

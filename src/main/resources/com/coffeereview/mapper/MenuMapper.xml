@@ -28,6 +28,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 </select>
 
+<sql id="criteria">
+	<trim suffix="AND">
+		<if test='keyword != null and keyword neq ""'>
+			menu like CONCAT('%',#{keyword},'%')
+		</if>
+	</trim>
+	<trim suffix="AND">
+		<if test='cafe != null and cafe neq ""'>
+			cafe = #{cafe}
+		</if>
+	</trim>
+</sql>
+
 <select id="getMenuListWithPaging" resultType="com.coffeereview.domain.MenuVO">
 
 	<![CDATA[
@@ -37,7 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM 
 			tbl_menu
 		WHERE
-			mno > 0 AND cafe = #{cafe}
+	]]>
+	
+	<include refid="criteria"></include>
+	
+	<![CDATA[
+			mno > 0
 		LIMIT
 			#{pageStart}, #{amount};
 	]]>
@@ -50,7 +68,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from 
 		tbl_menu 
 	where 
-		mno > 0 and cafe = #{cafe}
+		
+		<include refid="criteria"></include>
+	
+		mno > 0
 </select>
 
 </mapper>

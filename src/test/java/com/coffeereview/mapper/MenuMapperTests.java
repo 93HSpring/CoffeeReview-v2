@@ -56,12 +56,27 @@ public class MenuMapperTests {
 	}
 	*/
 	
+	/*
 	@Test
 	public void testPaging() {
 		
 		Criteria cri = new Criteria(2, 10, "STARBUCKS");
 		
 		mapper.getMenuListWithPaging(cri).forEach(menu -> log.info(menu));
+		
+	}
+	*/
+	
+	@Test
+	public void testSearch() {
+		
+		Criteria cri = new Criteria(2, 10, "");
+		
+		cri.setKeyword("");
+		
+		List<MenuVO> list = mapper.getMenuListWithPaging(cri);
+		
+		list.forEach(menu -> log.info(menu));
 		
 	}
 	

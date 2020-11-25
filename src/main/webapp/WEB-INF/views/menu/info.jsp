@@ -20,9 +20,11 @@
                 	<button data-oper='list' class="btn btn-info pull-right">List</button>
                 	
                 	<form id='operForm' action="/menu/list" method="get">
-                		<input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
+                		<input type='hidden' name='cafe' value='<c:out value="${cri.cafe}"/>'>
+                		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
                 		<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
                 		<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+                		<input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
                 	</form>
                 	
                     <h1 class="page-header">${menuInfo.cafe}</h1>
