@@ -74,8 +74,33 @@
          
                        </div>
                     <!-- /.panel -->
+                    <!-- 리뷰 목록 시작 -->
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    		<i class="fa fa-comments fa-fw"></i> Reply
+                    		<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Reply</button>
+                    	</div>
+                    	
+                    	<div class="panel-body">
+                    		<ul class="chat">
+                    			<!-- 리뷰 목록 출력 시작 -->
+                    			<li class="left clearfix" data-rno='12'>
+                    				<div>
+                    					<div class="header">
+                    						<strong class="primary-font">user00</strong>
+                    						<small class="pull-right text-muted">2020-11-26 15:28</small>
+                    					</div>
+                    					<p>Good job!</p>
+                    				</div>
+                    			</li>
+                    			<!-- 리뷰 목록 출력 끝 -->
+                    		</ul>
+                    	</div>
+                    </div>
+                    <!-- 리뷰 목록 끝 -->
+                    
                 	</div>
-                <!-- /.col-xs-3 -->
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div>
@@ -83,6 +108,39 @@
 
     </div>
     <!-- /#wrapper -->
+    
+    <!-- 리뷰 Modal 처리 시작 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+    			</div>
+    			<div class="modal-body">
+    				<div class="form-group">
+    					<label>Reply</label>
+    					<input class="form-control" name="reply" value="New Reply!!!!">
+    				</div>
+    				<div class="form-group">
+    					<label>Replyer</label>
+    					<input class="form-control" name="replyer" value="replyer">
+    				</div>
+    				<div class="form-group">
+    					<label>Reply Date</label>
+    					<input class="form-control" name="replyDate" value="">
+    				</div>
+    			</div>
+    			<div class="modal-footer">
+    				<button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+    				<button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+    				<button id="modalRegisterBtn" type="button" class="btn btn-success">Register</button>
+    				<button id="modalCloseBtn" type="button" class="btn btn-default">Close</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- 리뷰 Modal 처리 끝 -->
 
     <!-- plugin-js -->
     <%@include file="../includes/plugin_js.jsp" %>
@@ -91,10 +149,10 @@
     
     <script type="text/javascript">
     
-    console.log("================");
-    console.log("JS TEST");
+    //console.log("================");
+    //console.log("JS TEST");
     
-    var mnoValue = '<c:out value="${menuInfo.mno}"/>';
+    //var mnoValue = '<c:out value="${menuInfo.mno}"/>';
     
     // Reply Add Test
     //replyService.add(
@@ -138,9 +196,9 @@
     //});
     
     // 특정 번호 리뷰 조회
-    replyService.get(8, function(data) {
-    	console.log(data);
-    });
+    // replyService.get(8, function(data) {
+    //	console.log(data);
+    //});
     
     </script>
     
@@ -157,7 +215,145 @@
 			
 		});
 		
+		// 리뷰 기능 처리
 		//console.log(replyService);
+		var mnoValue = '<c:out value="${menuInfo.mno}"/>';
+		var replyUL = $(".chat");
+		
+		// 1페이지 출력
+		showList(1);
+		
+		// 리뷰 목록 출력
+		function showList(page) {
+			
+			replyService.getList({mno:mnoValue, page:page||1}, function(list) {
+				
+				var str = "";
+				if (list == null || list.length == 0) {
+					
+					replyUL.html("");
+					
+					return;
+					
+				}
+				
+				for (var i = 0, len = list.length || 0; i < len; i++) {
+					
+					str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
+					str += "	<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
+					str += "	<small class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
+					str += "	<p>" + list[i].reply + "</p></div></li>";
+					
+				}
+				
+				replyUL.html(str);
+				
+			});
+			
+		}
+		
+		// 리뷰 Modal 처리
+		var modal = $(".modal");
+		var modalInputReply = modal.find("input[name='reply']");
+		var modalInputReplyer = modal.find("input[name='replyer']");
+		var modalInputReplyDate = modal.find("input[name='replyDate']");
+		
+		var modalModBtn = $("#modalModBtn");
+		var modalRemoveBtn = $("#modalRemoveBtn");
+		var modalRegisterBtn = $("#modalRegisterBtn");
+		var modalCloseBtn = $("#modalCloseBtn");
+		
+		$("#addReplyBtn").on("click", function(e) {
+			
+			modal.find("input").val("");
+			modalInputReplyDate.closest("div").hide();
+			modal.find("button[id !='modalCloseBtn']").hide();
+			
+			modalRegisterBtn.show();
+			
+			//$(".modal").modal("show");
+			modal.modal("show");
+			
+		});
+		
+		modalRegisterBtn.on("click", function(e) {
+			
+			var reply = {
+					reply: modalInputReply.val(),
+					replyer: modalInputReplyer.val(),
+					mno: mnoValue
+			};
+			
+			replyService.add(reply, function(result) {
+				
+				alert(result);
+				
+				modal.find("input").val("");
+				modal.modal("hide");
+				
+				// 1페이지 출력
+				showList(1);
+				
+			});
+			
+		});
+		
+		$(".chat").on("click", "li", function(e) {
+			
+			var rno = $(this).data("rno");
+			
+			replyService.get(rno, function(reply) {
+				
+				modalInputReply.val(reply.reply);
+				modalInputReplyer.val(reply.replyer);
+				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+				modalInputReplyDate.closest("div").show();
+				modal.data("rno", reply.rno);
+				
+				modal.find("button[id != 'modalCloseBtn']").hide();
+				modalModBtn.show();
+				modalRemoveBtn.show();
+				
+				$(".modal").modal("show");
+				
+			});
+			
+		});
+		
+		modalModBtn.on("click", function(e) {
+			
+			var reply = {rno:modal.data("rno"), reply:modalInputReply.val()};
+			
+			replyService.update(reply, function(result) {
+				
+				alert(result);
+				modal.modal("hide");
+				showList(1);
+				
+			});
+			
+		});
+		
+		modalRemoveBtn.on("click", function(e) {
+			
+			var rno = modal.data("rno");
+			
+			replyService.remove(rno, function(result) {
+				
+				alert(result);
+				modal.modal("hide");
+				showList(1);
+				
+			});
+			
+		});
+		
+		modalCloseBtn.on("click", function(e) {
+			
+			modal.modal("hide");
+			//showList(1);
+			
+		});
 
 	});
     </script>
