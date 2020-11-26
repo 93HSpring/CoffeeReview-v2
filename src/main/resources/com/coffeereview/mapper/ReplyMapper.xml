@@ -46,14 +46,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getListWithPaging" resultType="com.coffeereview.domain.ReplyVO">
 	
-		select
-			*
-		from
-			tbl_reply
-		where
-			mno = #{mno}
-		order by 
-			rno asc
+		<![CDATA[
+			SELECT
+				rno, mno, reply, replyer, replyDate, updateDate, star
+			FROM 
+				(
+					SELECT
+						rno, mno, reply, replyer, replyDate, updateDate, star, ROW_NUMBER() OVER() as rn
+					FROM
+						tbl_reply
+					WHERE
+						mno = #{mno} AND rno > 0
+					ORDER BY 
+						rn ASC
+				) AS TB
+			WHERE
+				TB.rn > (#{cri.pageNum} - 1) * #{cri.amount} AND TB.rn <= #{cri.pageNum} * #{cri.amount}
+		]]>
+		
+	</select>
+	
+	<select id="getCountByMno" resultType="int">
+	
+		<![CDATA[
+			select
+				count(rno)
+			from
+				tbl_reply
+			where
+				mno = #{mno}
+		]]>
 		
 	</select>
 
