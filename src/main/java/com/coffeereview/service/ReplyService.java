@@ -1,15 +1,13 @@
-package com.coffeereview.mapper;
+package com.coffeereview.service;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 
 import com.coffeereview.domain.Criteria;
 import com.coffeereview.domain.ReplyVO;
 
 /**
-* @packageName   : com.coffeereview.mapper
-* @fileName      : ReplyMapper.java
+* @packageName   : com.coffeereview.service
+* @fileName      : ReplyService.java
 * @author        : SeongPyo Jo
 * @date          : 2020.11.26
 * @description   :
@@ -19,16 +17,16 @@ import com.coffeereview.domain.ReplyVO;
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       CRUD 기능 구현
 */
-public interface ReplyMapper {
+public interface ReplyService {
 	
-	public int insert(ReplyVO vo);
+	public int register(ReplyVO vo);
 	
-	public ReplyVO read(Long rno);
+	public ReplyVO get(Long rno);
 	
-	public int delete(Long rno);
+	public int modify(ReplyVO vo);
 	
-	public int update(ReplyVO reply);
+	public int remove(Long rno);
 	
-	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("mno") Long mno);
+	public List<ReplyVO> getList(Criteria cri, Long mno);
 
 }

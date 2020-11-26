@@ -15,6 +15,7 @@ import lombok.ToString;
 * -----------------------------------------------------------
 * 2020.11.23        SeongPyo Jo       최초 생성
 * 2020.11.23        SeongPyo Jo       검색 키워드 추가
+* 2020.11.23        SeongPyo Jo       리뷰 조회를 위한 생성자 추가
 */
 
 @Getter
@@ -38,6 +39,24 @@ public class Criteria {
 		
 		// 기본 페이지는 1페이지, 12개의 데이터를 보여줌
 		// this(1, 12, "STARBUCKS");
+		
+	}
+	
+	public Criteria(int pageNum, int amount) {
+		
+		if (pageNum <= 0) {
+			this.pageNum = 1;
+		}
+		else {
+			this.pageNum = pageNum;
+		}
+		
+		if (amount <= 0) {
+			this.amount = 10;
+		}
+		else {
+			this.amount = amount;
+		}
 		
 	}
 	
