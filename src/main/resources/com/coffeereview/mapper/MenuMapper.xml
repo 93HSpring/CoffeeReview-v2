@@ -53,17 +53,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					FROM
 						tbl_menu
 					WHERE
+		]]>
+		
+			<include refid="criteria"></include>
+		
+		<![CDATA[
 						mno > 0
 					ORDER BY 
 						rn ASC
 				) AS TB
 			WHERE
-		]]>
-		
-		<include refid="criteria"></include>
-		
-		<![CDATA[
-			TB.rn > (#{pageNum} - 1) * #{amount} AND TB.rn <= #{pageNum} * #{amount}
+				TB.rn > (#{pageNum} - 1) * #{amount} AND TB.rn <= #{pageNum} * #{amount}
 		]]>
 		
 	</select>

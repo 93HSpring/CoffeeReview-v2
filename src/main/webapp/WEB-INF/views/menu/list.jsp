@@ -87,7 +87,7 @@
     <%@include file="../includes/plugin_js.jsp" %>
     
     <!-- import JS -->
-   	<script type="text/javascript" src="/resources/js/common.js"></script>
+   	<script type="text/javascript" src="/resources/js/common.js?ver=0.1.1"></script>
     
     <script>
     
