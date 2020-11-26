@@ -87,4 +87,5 @@ public class Criteria {
 		return (this.pageNum - 1) * this.amount;
 		
 	}
+	
 }

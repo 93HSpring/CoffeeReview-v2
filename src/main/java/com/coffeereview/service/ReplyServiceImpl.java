@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coffeereview.domain.Criteria;
+import com.coffeereview.domain.ReplyPageDTO;
 import com.coffeereview.domain.ReplyVO;
 import com.coffeereview.mapper.ReplyMapper;
 
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j;
 * -----------------------------------------------------------
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       CRUD 기능 구현
+* 2020.11.26        SeongPyo Jo       댓글 페이징과 댓글 수 처리 메쏘드 추가(getListPage)
 */
 @Service
 @Log4j
@@ -75,6 +77,13 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return mapper.getListWithPaging(cri, mno);
 
+	}
+	
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long mno) {
+		
+		return new ReplyPageDTO(mapper.getCountByMno(mno), mapper.getListWithPaging(cri, mno));
+		
 	}
 
 }

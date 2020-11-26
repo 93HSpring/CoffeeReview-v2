@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffeereview.domain.Criteria;
+import com.coffeereview.domain.ReplyPageDTO;
 import com.coffeereview.domain.ReplyVO;
 import com.coffeereview.service.ReplyService;
 
@@ -32,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 * -----------------------------------------------------------
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       CRUD 기능 구현
+* 2020.11.26        SeongPyo Jo       댓글 페이징과 댓글 수 처리 메쏘드 추가(getList)
 */
 @RequestMapping("/replies/")
 @RestController
@@ -55,15 +57,17 @@ public class ReplyController {
 	}
 	
 	@GetMapping(value = "/pages/{mno}/{page}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page, @PathVariable("mno") Long mno) {
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("mno") Long mno) {
 		
-		log.info("getList..........");
 		
+		// 10개의 댓글 페이징
 		Criteria cri = new Criteria(page, 10);
 		
-		log.info(cri);
+		log.info("get Reply List mno : " + mno);
 		
-		return new ResponseEntity<>(service.getList(cri, mno), HttpStatus.OK);
+		log.info("cri : " + cri);
+		
+		return new ResponseEntity<>(service.getListPage(cri, mno), HttpStatus.OK);
 		
 	}
 	

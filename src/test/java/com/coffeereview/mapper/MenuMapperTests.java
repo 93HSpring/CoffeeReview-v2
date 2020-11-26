@@ -70,7 +70,7 @@ public class MenuMapperTests {
 	@Test
 	public void testSearch() {
 		
-		Criteria cri = new Criteria(2, 10, "");
+		Criteria cri = new Criteria(3, 10, "");
 		
 		cri.setKeyword("");
 		

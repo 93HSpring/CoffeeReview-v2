@@ -18,6 +18,7 @@ import com.coffeereview.domain.ReplyVO;
 * -----------------------------------------------------------
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       CRUD 기능 구현
+* 2020.11.26        SeongPyo Jo       리뷰 숫자 파악하는 메쏘드 추가(getCountByMno)
 */
 public interface ReplyMapper {
 	
@@ -30,5 +31,7 @@ public interface ReplyMapper {
 	public int update(ReplyVO reply);
 	
 	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("mno") Long mno);
+	
+	public int getCountByMno(Long mno);
 
 }

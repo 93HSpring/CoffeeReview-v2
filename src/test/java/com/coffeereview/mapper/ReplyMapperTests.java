@@ -87,6 +87,7 @@ public class ReplyMapperTests {
 	}
 	*/
 	
+	/*
 	@Test
 	public void testList() {
 		
@@ -94,6 +95,19 @@ public class ReplyMapperTests {
 		
 		// mno가 1인 게시글
 		List<ReplyVO> replies = mapper.getListWithPaging(cri, mnoArr[0]);
+		
+		replies.forEach(reply -> log.info(reply));
+		
+	}
+	*/
+	
+	// 페이징 테스트
+	@Test
+	public void testList2() {
+		
+		Criteria cri = new Criteria(0, 10);
+		
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 1L);
 		
 		replies.forEach(reply -> log.info(reply));
 		
