@@ -4,14 +4,80 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coffeereview.mapper.MenuMapper">
 
-<select id="getMenuList" resultType="com.coffeereview.domain.MenuVO">
-	<![CDATA[
-	select * from tbl_menu where mno > 0
-	]]>
-</select>
-
-<select id="getMenu" resultType="com.coffeereview.domain.MenuVO">
-	select * from tbl_menu where mno = #{mno}
-</select>
+	<select id="getMenuList" resultType="com.coffeereview.domain.MenuVO">
+	
+		<![CDATA[
+			select 
+				* 
+			from 
+				tbl_menu 
+			where 
+				cafe = #{cafe}
+		]]>
+		
+	</select>
+	
+	<select id="getMenu" resultType="com.coffeereview.domain.MenuVO">
+	
+		select 
+			* 
+		from 
+			tbl_menu 
+		where 
+			mno = #{mno}
+			
+	</select>
+	
+	<sql id="criteria">
+		<trim suffix="AND">
+			<if test='keyword != null and keyword neq ""'>
+				menu like CONCAT('%',#{keyword},'%')
+			</if>
+		</trim>
+		<trim suffix="AND">
+			<if test='cafe != null and cafe neq ""'>
+				cafe = #{cafe}
+			</if>
+		</trim>
+	</sql>
+	
+	<select id="getMenuListWithPaging" resultType="com.coffeereview.domain.MenuVO">
+	
+		<![CDATA[
+			SELECT
+				mno, menu, cafe, star_avg
+			FROM
+				(
+					SELECT
+						mno, menu, cafe, star_avg, ROW_NUMBER() OVER() as rn
+					FROM
+						tbl_menu
+					WHERE
+						mno > 0
+					ORDER BY 
+						rn ASC
+				) AS TB
+			WHERE
+		]]>
+		
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+			TB.rn > (#{pageNum} - 1) * #{amount} AND TB.rn <= #{pageNum} * #{amount}
+		]]>
+		
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select 
+			count(*) 
+		from 
+			tbl_menu 
+		where 
+			
+			<include refid="criteria"></include>
+		
+			mno > 0
+	</select>
 
 </mapper>

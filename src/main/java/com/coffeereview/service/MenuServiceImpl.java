@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.coffeereview.domain.Criteria;
 import com.coffeereview.domain.MenuVO;
 import com.coffeereview.mapper.MenuMapper;
 
@@ -22,6 +23,9 @@ import lombok.extern.log4j.Log4j;
 * 2020.10.29        SeongPyo Jo       최초 생성
 * 2020.11.10        SeongPyo Jo       메쏘드 이름 변경(get -> getCafeMenu)
 * 2020.11.10        SeongPyo Jo       클래스 및 메쏘드 이름 변경(cafe -> menu)
+* 2020.11.23        SeongPyo Jo       getMenuList 파라미터 추가 (cafe)
+* 2020.11.23        SeongPyo Jo       getMenuList 페이징 처리 메쏘드로 변환
+* 2020.11.23        SeongPyo Jo       각 카페별 메뉴들의 총 개수를 구하는 메쏘드 추가 (getTotal)
 */
 
 @Log4j
@@ -43,15 +47,34 @@ public class MenuServiceImpl implements MenuService {
 		return mapper.getMenu(mno);
 		
 	}
-
+	
+	/*
 	@Override
-	public List<MenuVO> getMenuList() {
+	public List<MenuVO> getMenuList(String cafe) {
 		// TODO Auto-generated method stub
 		
 		log.info("getMenuList..........");
 		
-		return mapper.getMenuList();
+		return mapper.getMenuList(cafe);
 		
 	}
+	*/
 
+	@Override
+	public List<MenuVO> getMenuList(Criteria cri) {
+		// TODO Auto-generated method stub
+		
+		log.info("getMenuList..........");
+		
+		return mapper.getMenuListWithPaging(cri);
+		
+	}
+	
+	@Override
+	public int getTotal(Criteria cri) {
+
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
+		
+	}
 }
