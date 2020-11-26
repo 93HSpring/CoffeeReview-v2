@@ -111,7 +111,7 @@
     		$(".move").on("click", function(e) {
     			
     			e.preventDefault();
-    			actionForm.append("<input type='hidden' name='mno' value='" + $(this).attr("href") + "'>");
+    			actionForm.append("<input type='hidden' name='mno' value='" + $(this).attr("href") + "'>");   
     			actionForm.attr("action", "/menu/info");
     			actionForm.submit();
     			
