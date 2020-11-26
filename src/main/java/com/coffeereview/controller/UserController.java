@@ -33,9 +33,10 @@ public class UserController {
 
 	private UserService service;
 	
-	@GetMapping("/user_index")
+	@GetMapping("/index")
 	public void mainPage(Model model) {
-		log.info("/user_index");
+		log.info("/index");
+		
 	}
 	
 	@GetMapping("/insertUser")
