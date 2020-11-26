@@ -86,6 +86,9 @@
     <!-- plugin-js -->
     <%@include file="../includes/plugin_js.jsp" %>
     
+    <!-- import JS -->
+   	<script type="text/javascript" src="/resources/js/common.js"></script>
+    
     <script>
     
     	$(document).ready(function() {

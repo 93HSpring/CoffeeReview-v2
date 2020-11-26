@@ -87,6 +87,63 @@
     <!-- plugin-js -->
     <%@include file="../includes/plugin_js.jsp" %>
     
+    <script type="text/javascript" src="/resources/js/reply.js"></script>
+    
+    <script type="text/javascript">
+    
+    console.log("================");
+    console.log("JS TEST");
+    
+    var mnoValue = '<c:out value="${menuInfo.mno}"/>';
+    
+    // Reply Add Test
+    //replyService.add(
+   	//	{reply:"JS Test", replyer:"tester", mno:mnoValue},
+   	//	function(result) {
+   	//		alert("RESULT : " + result);
+   	//	}
+    //);
+    
+    // Reply List Test
+    //replyService.getList({mno:mnoValue, page:1}, function(list) {
+    	
+    //	for (var i = 0, len = list.length||0; i < len; i++) {
+    		
+    //		console.log(list[i]);
+    		
+    //	}
+    	
+    //});
+    
+    // Reply Remove Test
+    //replyService.remove(10, function(count) {
+    	
+    //	console.log(count);
+    	
+    //	if (count === "success") {
+    //		alert("REMOVED");
+    //	}
+    	
+    //}, function(err) {
+    //	alert('ERROR...');
+    //});
+    
+    // Reply Update Test
+    //replyService.update({
+    //	rno : 2,
+    //	mno : mnoValue,
+    //	reply : "Modified Reply..."
+    //}, function(result) {
+    //	alert("수정 완료...");
+    //});
+    
+    // 특정 번호 리뷰 조회
+    replyService.get(8, function(data) {
+    	console.log(data);
+    });
+    
+    </script>
+    
     <script>
     $(document).ready(function() {
 		
@@ -99,6 +156,8 @@
 			operForm.submit();
 			
 		});
+		
+		//console.log(replyService);
 
 	});
     </script>
