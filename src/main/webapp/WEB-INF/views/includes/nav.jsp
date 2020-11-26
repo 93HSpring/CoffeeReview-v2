@@ -235,7 +235,7 @@
             						<option value="COFFEEBEAN" <c:out value="${pageMaker.cri.cafe == 'COFFEEBEAN' ? 'selected' : ''}" />>COFFEEBEAN</option>
 	            				</select>
                            	
-                           	<!-- 검색 처리 끝 -->
+                           		<!-- 검색 처리 끝 -->
 	                            <div class="input-group custom-search-form">
 	                                <input type="text" name='keyword' class="form-control" placeholder="메뉴를 입력하세요..." value='<c:out value="${pageMaker.cri.keyword}" />' />
 	                                <input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}" />' />

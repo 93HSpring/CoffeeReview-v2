@@ -16,9 +16,7 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
-                	<button data-oper='list' class="btn btn-info pull-right">List</button>
-                	
+                <div class="col-lg-12">                	
                 	<form id='operForm' action="/menu/list" method="get">
                 		<input type='hidden' name='cafe' value='<c:out value="${cri.cafe}"/>'>
                 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -27,7 +25,7 @@
                 		<input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
                 	</form>
                 	
-                    <h1 class="page-header">${menuInfo.cafe}</h1>
+                    <h1 class="page-header">${menuInfo.cafe} <button data-oper='list' class="btn btn-info pull-right">List</button></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -84,17 +82,13 @@
                     	<div class="panel-body">
                     		<ul class="chat">
                     			<!-- 리뷰 목록 출력 시작 -->
-                    			<li class="left clearfix" data-rno='12'>
-                    				<div>
-                    					<div class="header">
-                    						<strong class="primary-font">user00</strong>
-                    						<small class="pull-right text-muted">2020-11-26 15:28</small>
-                    					</div>
-                    					<p>Good job!</p>
-                    				</div>
-                    			</li>
+                    			
                     			<!-- 리뷰 목록 출력 끝 -->
                     		</ul>
+                    	</div>
+                    	
+                    	<div class="panel-footer replyPageFooter">
+                    		
                     	</div>
                     </div>
                     <!-- 리뷰 목록 끝 -->
@@ -144,6 +138,9 @@
 
     <!-- plugin-js -->
     <%@include file="../includes/plugin_js.jsp" %>
+    
+    <!-- import JS -->
+   	<script type="text/javascript" src="/resources/js/common.js"></script>
     
     <script type="text/javascript" src="/resources/js/reply.js"></script>
     
@@ -226,12 +223,29 @@
 		// 리뷰 목록 출력
 		function showList(page) {
 			
-			replyService.getList({mno:mnoValue, page:page||1}, function(list) {
+			console.log("show list " + page);
+			
+			replyService.getList({mno:mnoValue, page:page||1}, function(replyCnt, list) {
+				
+				console.log("replyCnt : " + replyCnt);
+				console.log("list : " + list);
+				console.log(list);
+				
+				// 사용자가 새로운 리뷰를 추가하면 showList(-1)을 호출하여
+				// 우선 전체 리뷰의 숫자를 파악하고 마지막 페이지를 호출해서 이동시키는 동작
+				if (page == -1) {
+					
+					// 리뷰를 10개씩 처리할때, Controller 에서 숫자 변경 시 변경 필요
+					pageNum = Math.ceil(replyCnt / 10.0);
+					showList(pageNum);
+					return;
+					
+				}
 				
 				var str = "";
 				if (list == null || list.length == 0) {
 					
-					replyUL.html("");
+					//replyUL.html("");
 					
 					return;
 					
@@ -240,13 +254,15 @@
 				for (var i = 0, len = list.length || 0; i < len; i++) {
 					
 					str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
-					str += "	<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
+					str += "	<div><div class='header'><strong class='primary-font'>[" + list[i].rno + "] " + list[i].replyer + "</strong>";
 					str += "	<small class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
 					str += "	<p>" + list[i].reply + "</p></div></li>";
 					
 				}
 				
 				replyUL.html(str);
+				
+				showReplyPage(replyCnt);
 				
 			});
 			
@@ -292,8 +308,8 @@
 				modal.modal("hide");
 				
 				// 1페이지 출력
-				showList(1);
-				
+				//showList(1);
+				showList(-1);
 			});
 			
 		});
@@ -328,7 +344,7 @@
 				
 				alert(result);
 				modal.modal("hide");
-				showList(1);
+				showList(pageNum);
 				
 			});
 			
@@ -342,7 +358,7 @@
 				
 				alert(result);
 				modal.modal("hide");
-				showList(1);
+				showList(pageNum);
 				
 			});
 			
@@ -354,6 +370,76 @@
 			//showList(1);
 			
 		});
+		
+		// 리뷰 페이지 번호 출력
+		var pageNum = 1;
+		var replyPageFooter = $(".replyPageFooter");
+		
+		function showReplyPage(replyCnt) {
+			
+			var endNum = Math.ceil(pageNum / 10.0) * 10;
+			var startNum = endNum - 9;
+			
+			var prev = startNum != 1;
+			var next = false;
+			
+			if (endNum * 10 >= replyCnt) {
+				
+				endNum = Math.ceil(replyCnt / 10.0);
+				
+			}
+			
+			if (endNum * 10 < replyCnt) {
+				
+				next = true;
+				
+			}
+			
+			var str = "<ul class='pagination pull-right'>";
+			
+			if (prev) {
+				
+				str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+				
+			}
+			
+			for (var i = startNum; i <= endNum; i++) {
+				
+				var active = pageNum == i ? "active" : "";
+				
+				str += "<li class='page-item " + active + "'><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+				
+			}
+			
+			if (next) {
+				
+				str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+				
+			}
+			
+			str += "</ul></div>";
+			
+			console.log(str);
+			
+			replyPageFooter.html(str);
+			
+		}
+		
+		// 페이지의 번호를 클릭했을 때 새로운 리뷰를 가져오게 함
+		replyPageFooter.on("click", "li a", function(e) {
+			
+			e.preventDefault();
+			console.log("page click");
+			
+			var targetPageNum = $(this).attr("href");
+			
+			console.log("targetPageNum : " + targetPageNum);
+			
+			pageNum = targetPageNum;
+			
+			showList(pageNum);
+			
+		})
 
 	});
     </script>
