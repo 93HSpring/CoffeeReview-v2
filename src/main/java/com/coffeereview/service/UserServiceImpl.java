@@ -33,7 +33,9 @@ public class UserServiceImpl implements UserService{
 	// CREATE : user를 새로 등록하기
 	@Override
 	public void insertUser(UserVO vo) {
+		log.info("insertUser........");
 		
+		mapper.insertUser(vo);
 	}
 	
 	// READ : Id에 해당하는 user 받아오기
