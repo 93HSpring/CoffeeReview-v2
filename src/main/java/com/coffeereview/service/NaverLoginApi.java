@@ -1,4 +1,4 @@
-package com.coffeereview.domain;
+package com.coffeereview.service;
 
 import com.github.scribejava.core.builder.api.DefaultApi20;
 
