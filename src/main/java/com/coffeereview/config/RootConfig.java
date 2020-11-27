@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.coffeereview.service.NaverLoginBO;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -23,6 +24,7 @@ import com.zaxxer.hikari.HikariDataSource;
 * -----------------------------------------------------------
 * 2020.10.29        SeongPyo Jo       최초 생성
 * 2020.10.29        SeongPyo Jo       서비스 객체 설정 (ComponentScan)
+* 2020.11.27		Goonoo Jang		  String타입 Bean 설정 ( string() )
 */
 
 @Configuration
@@ -54,5 +56,13 @@ public class RootConfig {
 		sqlSessionFactory.setDataSource(dataSource());
 		return (SqlSessionFactory) sqlSessionFactory.getObject();
 	}
+	
+	// String 타입 bean 설정 (for UserController)
+	@Bean
+	public String string() {
+		return new String();
+	}
+	
+
 	
 }

@@ -24,19 +24,23 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="login">login click</a>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            
-                            
-                            
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+                    <div class="card">
+    					<div class="card-body login-card-body">
+      						<p class="login-box-msg">Sign in to start your session</p>
+
+      						<div class="social-auth-links text-center mb-3">
+        					<!-- 네이버 로그인 창으로 이동 -->
+								<div id="naver_id_login" style="text-align:center"><a href="${url}">
+								<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+      						</div>
+      						<!-- /.social-auth-links -->
+
+      						<p class="mb-0">
+        						<a href="loginForSignup" class="text-center">Register a new membership</a>
+      						</p>
+    					</div>
+    					<!-- /.login-card-body -->
+  					</div>
                 </div>
                 <!-- /.col-lg-6 -->
             </div>
