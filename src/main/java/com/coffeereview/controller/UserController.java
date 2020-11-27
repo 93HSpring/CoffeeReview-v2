@@ -1,6 +1,7 @@
 package com.coffeereview.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,8 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.coffeereview.domain.UserVO;
 import com.coffeereview.service.NaverLoginBO;
@@ -33,7 +39,8 @@ import lombok.extern.log4j.Log4j;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.11.21        Goonoo Jang       최초 생성
-* 2020.11.27		Goonoo Jang		  네이버 로그인 API 관련 메소드 추가 (login(), callback()) 
+* 2020.11.27		Goonoo Jang		  네이버 로그인 API 관련 메소드 추가 (login(), callback())
+* 2020.11.27		Goonoo Jang		  회원가입, 로그인, 로그아웃 메소드 추가 (register(), signup(), logout() ) 
 */
 
 @Controller
@@ -71,7 +78,7 @@ public class UserController {
 
 	// callback //
 	@GetMapping("/callback")
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest req)
 			throws IOException, ParseException {
 
 		OAuth2AccessToken oauthToken;
@@ -95,8 +102,63 @@ public class UserController {
 		model.addAttribute("result", apiResult);
 		System.out.println(name);
 		
-		return "redirect:user_index";
+		// tbl_users DB에 현재 로그인된 회원이 존재하면
+		if (service.findUser(uid)) {
+			// 4.파싱 닉네임 세션으로 저장
+			session.setAttribute("sessionId", uid); // 세션 생성
+			session.setAttribute("sessionName", name); // 웹에 띄울 사용자 이름 저장
+			
+			return "redirect:user_index";
+		} else { // tbl_users DB에 회원정보가 없으면
+			// 회원가입 페이지로 넘어가기
+			FlashMap fm = RequestContextUtils.getOutputFlashMap(req);
+			fm.put("uid", uid);
+			fm.put("name", name);
+			fm.put("nickname", (String) response_obj.get("nickname"));
+			fm.put("age", (String) response_obj.get("age"));
+			fm.put("gender", (String) response_obj.get("gender"));
+			fm.put("email", (String) response_obj.get("email"));
+			
+			
+			/*
+			model.addAttribute("uid", uid);
+			model.addAttribute("name", name);
+			model.addAttribute("nickname", (String) response_obj.get("nickname"));
+			model.addAttribute("age", (String) response_obj.get("age"));
+			model.addAttribute("gender", (String) response_obj.get("gender"));
+			model.addAttribute("email", (String) response_obj.get("email"));
+			*/
+			// phonenum, address
 
+			return "redirect:register";
+		}
+
+	}
+	
+	@GetMapping("/register")
+	public void registerUser(Model model, HttpServletRequest req) {
+		log.info("/register");
+		
+		Map<String, ?> flashmap = RequestContextUtils.getInputFlashMap(req);
+		if(flashmap != null) {
+			model.addAllAttributes(flashmap);
+		}
+		
+	}
+	
+	@RequestMapping(value = "/signup", method = { RequestMethod.GET, RequestMethod.POST })
+	public String signupUser(@ModelAttribute UserVO vo) throws IOException{
+		
+		service.insertUser(vo);
+		
+		return "redirect:user_index";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) throws IOException{
+		log.info("/logout");
+		session.invalidate();
+		return "redirect:user_index";
 	}
 
 	@GetMapping("/user_index")

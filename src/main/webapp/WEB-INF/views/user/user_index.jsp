@@ -22,26 +22,57 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="login">login click</a>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            
-                            
-                            
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-            </div>
-            <!-- /.row -->
-        </div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a href="login">login click</a>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body"></div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+				<!-- /.col-lg-6 -->
+			</div>
+			<!-- /.row -->
+			<!-- 로그인된 사람 이름 -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<c:choose>
+								<c:when test="${sessionId eq null }">
+									로그인하세요
+								</c:when>
+								<c:otherwise>
+									${sessionName }님
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<!-- /.panel -->
+					</div>
+					<!-- /.col-lg-6 -->
+				</div>
+			</div>
+			<!-- /로그인된 사람 이름 -->
+			<!-- 로그아웃 버튼 -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a href="logout">로그아웃</a>
+						</div>
+						<!-- /.panel -->
+					</div>
+					<!-- /.col-lg-6 -->
+				</div>
+			</div>
+			
+			<!-- /로그아웃 버튼 -->
+
+		</div>
         <!-- /#page-wrapper -->
 
     </div>
