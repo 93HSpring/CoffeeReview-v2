@@ -43,6 +43,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.23        SeongPyo Jo       getCafeMenu -> getMenuInfo으로 변경 (파리미터 변경 포함)
 * 2020.11.23        SeongPyo Jo       getMenuList, getMenuInfo 방식 변경으로 인한 파라미터에 Criteria 추가
 * 2020.11.23        SeongPyo Jo       getMenuList 메쏘드에 각 카페별 메뉴의 총 개수를 구하는 기능 추가
+* 2020.11.27        SeongPyo Jo		  list와 info에서 검색 기능을 사용하기 위해 getMenuList에 ModelAttribute 추가
 */
 
 @Controller
@@ -64,7 +65,7 @@ public class MenuController {
 	*/
 	
 	@GetMapping("/list")
-	public void getMenuList(Criteria cri, Model model) {
+	public void getMenuList(@ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getMenuList(cri));

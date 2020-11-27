@@ -230,16 +230,16 @@
                         	<!-- 검색 처리 -->
 	            			<form id='searchForm' action="/menu/list" method='get'>
 	            				<select name='cafe' class="form-control">
-	            					<option value="" <c:out value="${pageMaker.cri.cafe == null ? 'selected' : ''}" />>--</option>
-            						<option value="STARBUCKS" <c:out value="${pageMaker.cri.cafe == 'STARBUCKS' ? 'selected' : ''}" />>STARBUCKS</option>
-            						<option value="COFFEEBEAN" <c:out value="${pageMaker.cri.cafe == 'COFFEEBEAN' ? 'selected' : ''}" />>COFFEEBEAN</option>
+	            					<option value="" <c:out value="${cri.cafe == null ? 'selected' : ''}" />>--</option>
+            						<option value="STARBUCKS" <c:out value="${cri.cafe == 'STARBUCKS' ? 'selected' : ''}" />>STARBUCKS</option>
+            						<option value="COFFEEBEAN" <c:out value="${cri.cafe == 'COFFEEBEAN' ? 'selected' : ''}" />>COFFEEBEAN</option>
 	            				</select>
                            	
                            		<!-- 검색 처리 끝 -->
 	                            <div class="input-group custom-search-form">
-	                                <input type="text" name='keyword' class="form-control" placeholder="메뉴를 입력하세요..." value='<c:out value="${pageMaker.cri.keyword}" />' />
-	                                <input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}" />' />
-	                                <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />' />
+	                                <input type="text" name='keyword' class="form-control form-input" placeholder="메뉴를 입력하세요..." value='<c:out value="${cri.keyword}" />' />
+	                                <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}" />' />
+	                                <input type='hidden' name='amount' value='<c:out value="${cri.amount}" />' />
 	                                <span class="input-group-btn">
 		                                <button class="btn btn-default" type="button">
 		                                    <i class="fa fa-search"></i>
