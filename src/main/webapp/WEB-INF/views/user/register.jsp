@@ -34,33 +34,26 @@
                                             <input type="hidden" class="form-control" name="uid" value="${uid }">
                                         </div>
                                         <div class="form-group">
-                                        	<label>Name</label>
-                                            <input readonly type="text" class="form-control" name="name" placeholder="Name" value="${name }">
+                                            <input type="hidden" class="form-control" name="name" value="${name }">
                                         </div>
                                         <div class="form-group">
                                         	<label>Nickname</label>
                                             <input type="text" class="form-control" name="nickname" placeholder="Nickname" value="${nickname }">
                                         </div>
                                         <div class="form-group">
-                                        	<label>Age</label>
-                                            <input type="text" class="form-control" name="age" placeholder="Age">
+                                            <input type="hidden" class="form-control" name="age">
                                         </div>
                                         <div class="form-group">
-                                        	<label>Gender</label>
-                                            <input readonly type="text" class="form-control" name="gender" placeholder="Gender" value="${gender }">
+                                            <input type="hidden" class="form-control" name="gender" value="${gender }">
                                         </div>
                                         <div class="form-group">
-                                        	<label>PhoneNumber</label>
-                                            <input type="text" class="form-control" name="phonenum" placeholder="PhoneNumber">
+                                            <input type="hidden" class="form-control" name="phonenum" placeholder="PhoneNumber">
                                         </div>
                                         <div class="form-group">
-                                        	<label>Address</label>
-                                            <input type="text" class="form-control" name="address" placeholder="Address">
+                                            <input type="hidden" class="form-control" name="address" placeholder="Address">
                                         </div>
                                         <div class="form-group">
-                                        	<label>Email</label>
-                                            <input readonly type="email" class="form-control" name="email" placeholder="Email" value="${email }">
-                                            <!-- 아예 못 바꾸게 -->
+                                            <input type="hidden" class="form-control" name="email" value="${email }">
                                         </div>
                                         
                                         <button type="submit" class="btn btn-default">Register</button>
@@ -90,15 +83,9 @@
    	<script type="text/javascript" src="/resources/js/common.js?ver=0.1.1"></script>
     <script>
 	function checkForm() {
-		if (document.signup.phonenum.value == "") {
-			alert("전화번호를 입력하세요.");
-			document.signup.phonenum.focus();
-			return false;
-		}
-		
-		if (document.signup.address.value == "") {
-			alert("주소를 입력하세요.");
-			document.signup.address.focus();
+		if (document.signup.nickname.value == "") {
+			alert("닉네임을 입력하세요.");
+			document.signup.nickname.focus();
 			return false;
 		}
 		
