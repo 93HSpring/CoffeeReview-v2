@@ -36,13 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where uid = #{uid}
 </select>
 
-
-
-
-
-
-
-
+<!-- uid로 nickname 가져오는 mapper 만들기 -->
+<select id="findUserNickname" resultType="String">
+	select nickname <!-- uid를 갖는 tuple이 존재하면 1, 아니면 0 반환 -->
+	from tbl_users
+	where uid = #{uid}
+</select>
 
 
 </mapper>

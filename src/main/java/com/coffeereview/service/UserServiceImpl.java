@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.11.21        Goonoo Jang       최초 생성
+* 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
 */
 
 @Log4j
@@ -66,5 +67,13 @@ public class UserServiceImpl implements UserService{
 		
 		return mapper.findUser(uid);
 	}
+	
+	// uid에 해당하는 user의 nickname을 반환
+	public String findUserNickname(String uid) {
+		log.info("findUserNickname.........");
+		
+		return mapper.findUserNickname(uid);
+	}
+	
 	
 }
