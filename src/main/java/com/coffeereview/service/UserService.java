@@ -12,6 +12,7 @@ import com.coffeereview.domain.UserVO;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.11.21        Goonoo Jang       최초 생성
+* 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
 */
 public interface UserService {
 
@@ -29,4 +30,7 @@ public interface UserService {
 	
 	// Id에 해당하는 user가 존재하는지 확인하기
 	public boolean findUser(String uid);
+	
+	// uid에 해당하는 user의 nickname을 반환
+	public String findUserNickname(String uid);
 }

@@ -164,6 +164,7 @@ public class UserController {
 	@GetMapping("/user_index")
 	public void mainPage(Model model) {
 		log.info("/user_index");
+		//System.out.println(service.findUserNickname("6746635"));
 
 	}
 	

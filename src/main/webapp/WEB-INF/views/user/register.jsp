@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="form-group">
                                         	<label>Name</label>
-                                            <input type="text" class="form-control" name="name" placeholder="Name" value="${name }">
+                                            <input readonly type="text" class="form-control" name="name" placeholder="Name" value="${name }">
                                         </div>
                                         <div class="form-group">
                                         	<label>Nickname</label>
@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="form-group">
                                         	<label>Gender</label>
-                                            <input type="text" class="form-control" name="gender" placeholder="Gender" value="${gender }">
+                                            <input readonly type="text" class="form-control" name="gender" placeholder="Gender" value="${gender }">
                                         </div>
                                         <div class="form-group">
                                         	<label>PhoneNumber</label>
@@ -59,7 +59,8 @@
                                         </div>
                                         <div class="form-group">
                                         	<label>Email</label>
-                                            <input type="email" class="form-control" name="email" placeholder="Email" value="${email }">
+                                            <input readonly type="email" class="form-control" name="email" placeholder="Email" value="${email }">
+                                            <!-- 아예 못 바꾸게 -->
                                         </div>
                                         
                                         <button type="submit" class="btn btn-default">Register</button>
