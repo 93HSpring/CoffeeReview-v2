@@ -1,4 +1,4 @@
-package com.coffeereview.controller;
+package com.coffeereview.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
