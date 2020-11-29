@@ -41,6 +41,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.21        Goonoo Jang       최초 생성
 * 2020.11.27		Goonoo Jang		  네이버 로그인 API 관련 메소드 추가 (login(), callback())
 * 2020.11.27		Goonoo Jang		  회원가입, 로그인, 로그아웃 메소드 추가 (register(), signup(), logout() ) 
+* 2020.11.29		Goonoo Jang		  tbl_users column 추가로 인한 callback()메소드 수정
 */
 
 @Controller
