@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.coffeereview.mapper.UserMapper">
 
 <insert id="insertUser" >
-	insert into tbl_users (uid, name, nickname, age, gender, phonenum, email, address)
-	values (#{uid}, #{name}, #{nickname}, #{age}, #{gender}, #{phonenum}, #{email}, #{address})
+	insert into tbl_users (uid, password, name, nickname, age, gender, phonenum, email, address)
+	values (#{uid}, #{password}, #{name}, #{nickname}, #{age}, #{gender}, #{phonenum}, #{email}, #{address})
 </insert>
 
 <select id="readUser" resultType="com.coffeereview.domain.UserVO">
@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="updateUser">
 	update tbl_users
 	name = #{name},
+	password = #{password},
 	nickname = #{nickname},
 	age = #{age};
 	gender = #{gender},

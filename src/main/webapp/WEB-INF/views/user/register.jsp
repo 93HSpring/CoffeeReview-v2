@@ -34,6 +34,9 @@
                                             <input type="hidden" class="form-control" name="uid" value="${uid }">
                                         </div>
                                         <div class="form-group">
+                                            <input type="hidden" class="form-control" name="password" value="${password }">
+                                        </div>
+                                        <div class="form-group">
                                             <input type="hidden" class="form-control" name="name" value="${name }">
                                         </div>
                                         <div class="form-group">
@@ -55,6 +58,7 @@
                                         <div class="form-group">
                                             <input type="hidden" class="form-control" name="email" value="${email }">
                                         </div>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         
                                         <button type="submit" class="btn btn-default">Register</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
@@ -82,7 +86,7 @@
     <!-- import JS -->
    	<script type="text/javascript" src="/resources/js/common.js?ver=0.1.1"></script>
     <script>
-	function checkForm() {
+    function checkForm() {
 		if (document.signup.nickname.value == "") {
 			alert("닉네임을 입력하세요.");
 			document.signup.nickname.focus();

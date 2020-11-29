@@ -113,6 +113,7 @@ public class UserController {
 			// 회원가입 페이지로 넘어가기
 			FlashMap fm = RequestContextUtils.getOutputFlashMap(req);
 			fm.put("uid", uid);
+			fm.put("password", "asdasd");
 			fm.put("name", name);
 			fm.put("nickname", (String) response_obj.get("nickname"));
 			fm.put("age", (String) response_obj.get("age"));
