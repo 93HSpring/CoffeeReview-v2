@@ -1,5 +1,6 @@
 package com.coffeereview.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,6 +30,20 @@ import lombok.extern.log4j.Log4j;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		log.info("configure.........................................");
+		auth.inMemoryAuthentication()
+		.withUser("admin").password("{noop}admin").roles("ADMIN");
+		auth.inMemoryAuthentication()
+		.withUser("member").password("{noop}member").roles("MEMBER");
+	}
+	
+	@Bean
+	public AuthenticationSuccessHandler loginSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
+	
+	@Override
 	public void configure(HttpSecurity http) throws Exception{
 		
 		http.authorizeRequests()
@@ -40,20 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.formLogin()
 		.loginPage("/customLogin")
-		.loginProcessingUrl("/login"); // Access Denied 되었을 때 로그인 페이지로 이동
-	}
-	
-	@Bean
-	public AuthenticationSuccessHandler loginSuccessHandler() {
-		return new CustomLoginSuccessHandler();
-	}
-	
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		log.info("configure.........................................");
-		auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("member").password("{noop}member").roles("MEMBER");
+		.loginProcessingUrl("/login") // Access Denied 되었을 때 로그인 페이지로 이동
+		.successHandler(loginSuccessHandler());
+		
+		http.logout()
+		.logoutUrl("/customLogout")
+		.invalidateHttpSession(true)
+		.deleteCookies("remember-me", "JSESSION_ID");
+		// 쿠키 삭제까지
 	}
 
 }
