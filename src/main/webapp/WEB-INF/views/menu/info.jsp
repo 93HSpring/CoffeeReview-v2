@@ -21,7 +21,7 @@
                 		<input type='hidden' name='cafe' value='<c:out value="${cri.cafe}"/>'>
                 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
                 		<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
-                		<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+                		<!-- <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'> -->
                 		<input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
                 	</form>
                 	
@@ -140,7 +140,7 @@
     <%@include file="../includes/plugin_js.jsp" %>
     
     <!-- import JS -->
-   	<script type="text/javascript" src="/resources/js/common.js?ver=0.1.1"></script>
+   	<script type="text/javascript" src="/resources/js/common.js?ver=0.1.2"></script>
     
     <script type="text/javascript" src="/resources/js/reply.js"></script>
     
@@ -428,6 +428,14 @@
 		// 페이지의 번호를 클릭했을 때 새로운 리뷰를 가져오게 함
 		replyPageFooter.on("click", "li a", function(e) {
 			
+			// 현재 페이지와 같은 페이지를 누를 경우
+			//if (pageNum == $(this).attr("href") ) {
+				
+			//	console.log("같은 페이지");
+			//	return false;
+				
+			//}
+						
 			e.preventDefault();
 			console.log("page click");
 			

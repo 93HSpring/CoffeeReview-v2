@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Coffee Review</a>
+                <a class="navbar-brand" href="/">Coffee Review</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -239,7 +239,7 @@
 	                            <div class="input-group custom-search-form">
 	                                <input type="text" name='keyword' class="form-control form-input" placeholder="메뉴를 입력하세요..." value='<c:out value="${cri.keyword}" />' />
 	                                <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}" />' />
-	                                <input type='hidden' name='amount' value='<c:out value="${cri.amount}" />' />
+	                                <!-- <input type='hidden' name='amount' value='<c:out value="${cri.amount}" />' /> -->
 	                                <span class="input-group-btn">
 		                                <button class="btn btn-default" type="button">
 		                                    <i class="fa fa-search"></i>
@@ -253,10 +253,12 @@
                             <a href="#"><i class="fa fa-coffee fa-fw"></i> Cafes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/menu/list?cafe=STARBUCKS&pageNum=1&amount=12">STARBUCKS</a>
+                                    <!-- <a href="/menu/list?cafe=STARBUCKS&pageNum=1&amount=12">STARBUCKS</a> -->
+                                    <a href="/menu/list?cafe=STARBUCKS&pageNum=1">STARBUCKS</a>
                                 </li>
                                 <li>
-                                    <a href="/menu/list?cafe=COFFEEBEAN&pageNum=1&amount=12">COFFEEBEAN</a>
+                                    <!-- <a href="/menu/list?cafe=COFFEEBEAN&pageNum=1&amount=12">COFFEEBEAN</a> -->
+                                    <a href="/menu/list?cafe=COFFEEBEAN&pageNum=1">COFFEEBEAN</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

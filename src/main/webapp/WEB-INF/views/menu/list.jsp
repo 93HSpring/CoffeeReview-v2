@@ -74,7 +74,7 @@
             	<input type='hidden' name='cafe' value='<c:out value="${pageMaker.cri.cafe}" />'>
             	<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword}" />'>
 				<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}" />'>
-				<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />'>
+				<!-- <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />'> -->
 			</form>
             <!-- 페이징 처리 끝 -->            
             <!-- /.row -->
@@ -98,6 +98,14 @@
     		
     		// 페이지를 눌러 이동 시
     		$(".paginate_button a").on("click", function(e) {
+    			
+    			// 현재 페이지와 같은 페이지를 클릭할 경우
+				if (${pageMaker.cri.pageNum} == $(this).attr("href") ) {
+    				
+    				console.log("같은 페이지");
+    				return false;
+    				
+    			}
 
 				e.preventDefault();
 
