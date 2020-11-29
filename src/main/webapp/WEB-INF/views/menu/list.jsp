@@ -98,6 +98,14 @@
     		
     		// 페이지를 눌러 이동 시
     		$(".paginate_button a").on("click", function(e) {
+    			
+    			// 현재 페이지와 같은 페이지를 클릭할 경우
+				if (${pageMaker.cri.pageNum} == $(this).attr("href") ) {
+    				
+    				console.log("같은 페이지");
+    				return false;
+    				
+    			}
 
 				e.preventDefault();
 
