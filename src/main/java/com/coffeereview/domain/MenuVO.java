@@ -13,6 +13,7 @@ import lombok.Data;
 * -----------------------------------------------------------
 * 2020.10.29        SeongPyo Jo       최초 생성
 * 2020.11.10        SeongPyo Jo       클래스 및 메쏘드 이름 변경(cafe -> menu)
+* 2020.11.29        SeongPyo Jo       replyCnt 변수 추가
 */
 @Data
 public class MenuVO {
@@ -25,5 +26,6 @@ public class MenuVO {
 	private Integer sodium;
 	private Integer sugars;
 	private Double star_avg;
+	private Integer replyCnt;
 	
 }

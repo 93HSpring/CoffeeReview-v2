@@ -45,11 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<![CDATA[
 			SELECT
-				mno, menu, cafe, star_avg
+				mno, menu, cafe, star_avg, replycnt
 			FROM
 				(
 					SELECT
-						mno, menu, cafe, star_avg, ROW_NUMBER() OVER() as rn
+						mno, menu, cafe, star_avg, replycnt, ROW_NUMBER() OVER() as rn
 					FROM
 						tbl_menu
 					WHERE
@@ -79,5 +79,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 			mno > 0
 	</select>
+	
+	<update id="updateReplyCnt">
+		
+		update
+			tbl_menu
+		set
+			replycnt = replycnt + #{amount}
+		where
+			mno = #{mno}
+			
+	</update>
 
 </mapper>
