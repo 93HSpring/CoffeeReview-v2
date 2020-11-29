@@ -19,9 +19,10 @@ import lombok.Data;
 public class UserVO {
 	
 	private String uid;
+	private String password;
 	private String name;
 	private String nickname;
-	private Integer age;
+	private String age;
 	private Character gender;
 	private String phonenum;
 	private String email;
