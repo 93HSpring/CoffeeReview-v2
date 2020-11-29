@@ -74,7 +74,7 @@
             	<input type='hidden' name='cafe' value='<c:out value="${pageMaker.cri.cafe}" />'>
             	<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword}" />'>
 				<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}" />'>
-				<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />'>
+				<!-- <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}" />'> -->
 			</form>
             <!-- 페이징 처리 끝 -->            
             <!-- /.row -->

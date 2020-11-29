@@ -21,7 +21,7 @@
                 		<input type='hidden' name='cafe' value='<c:out value="${cri.cafe}"/>'>
                 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
                 		<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
-                		<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+                		<!-- <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'> -->
                 		<input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
                 	</form>
                 	
