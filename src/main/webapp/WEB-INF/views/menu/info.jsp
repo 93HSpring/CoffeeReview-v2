@@ -34,7 +34,7 @@
                 <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                             ${menuInfo.menu}
+                             <c:out value="${menuInfo.menu}"/>
                           </div>
                           <div class="panel-body">
                              <div class="col-sm-6">
@@ -45,29 +45,30 @@
                                 <ul>
                                    <li>
                                       <dl>
-                                         <dt>카페인 (mg)</dt><dd>${menuInfo.caffeine}</dd>
+                                         <dt>카페인 (mg)</dt><dd><c:out value="${menuInfo.caffeine}" /></dd>
                                       </dl>
                                    </li>
                                    <li>
                                       <dl>
-                                         <dt>칼로리 (kcal)</dt><dd>${menuInfo.kcal}</dd>
+                                         <dt>칼로리 (kcal)</dt><dd><c:out value="${menuInfo.kcal}" /></dd>
                                       </dl>
                                    </li>
                                    <li>
                                       <dl>
-                                         <dt>나트륨 (mg)</dt><dd>${menuInfo.sodium}</dd>
+                                         <dt>나트륨 (mg)</dt><dd><c:out value="${menuInfo.sodium}" /></dd>
                                       </dl>
                                    </li>
                                    <li>
                                       <dl>
-                                         <dt>당류 (g)</dt><dd>${menuInfo.sugars}</dd>
+                                         <dt>당류 (g)</dt><dd><c:out value="${menuInfo.sugars}" /></dd>
                                       </dl>
                                    </li>
                                 </ul>
                              </div>
                           </div>
-                          <div class="panel-footer">
-                             
+                          <div class="panel-footer text-center info-star">
+							<i class="fa fa-star fa-fw"></i>
+							<c:out value="${menuInfo.star_avg}" />
                           </div>
          
                        </div>
@@ -129,7 +130,7 @@
                 </div>
                 <div class="form-group">
                    <label>Reply Star</label>
-                   <div class="make_star text-center" style="font-size: 3em;">
+                   <div class="make_star text-center">
                       
                   </div>
                   <input class="form-control" name="star" value="star">
@@ -266,7 +267,25 @@
                str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
                str += "   <div><div class='header'><strong class='primary-font'>[" + list[i].rno + "] " + list[i].replyer + "</strong>";
                str += "   <small class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
-               str += "   <p>" + list[i].reply + "</p></div></li>";
+               
+               str += "<div><small>";
+				// 색 있는 별 출력
+               for (var j = 1; j <= list[i].star; j++) {
+                  
+                  str += '<i class="fa fa-star" style="color: rgb(255, 0, 0);"></i>';
+                  
+               }
+               
+               // 색 없는 별 출력
+               for (var j = list[i].star + 1; j <= 5; j++) {
+                  
+                  str += '<i class="fa fa-star"></i>';
+                  
+               }
+               
+               str += "</small></div>"
+               
+               str += "   </br><p>" + list[i].reply + "</p></div></li>";
                
             }
             
