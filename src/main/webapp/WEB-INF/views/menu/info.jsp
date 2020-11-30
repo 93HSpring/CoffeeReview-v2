@@ -124,6 +124,13 @@
     					<label>Reply Date</label>
     					<input class="form-control" name="replyDate" value="">
     				</div>
+    				<div class="form-group">
+    					<label>Reply Star</label>
+    					<div class="make_star text-center" style="font-size: 3em;">
+    						
+						</div>
+						<input class="form-control" name="star">
+    				</div>
     			</div>
     			<div class="modal-footer">
     				<button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
@@ -270,22 +277,39 @@
 		
 		// 리뷰 Modal 처리
 		var modal = $(".modal");
-		var modalInputReply = modal.find("input[name='reply']");
-		var modalInputReplyer = modal.find("input[name='replyer']");
-		var modalInputReplyDate = modal.find("input[name='replyDate']");
+		var modalInputReply = modal.find("input[name=reply]");
+		var modalInputReplyer = modal.find("input[name=replyer]");
+		var modalInputReplyDate = modal.find("input[name=replyDate]");
+		var modalInputStar = modal.find("input[name=star]");
 		
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
 		var modalRegisterBtn = $("#modalRegisterBtn");
 		var modalCloseBtn = $("#modalCloseBtn");
 		
+		// 별점 기능 처리
+		//var starNum = 0;
+		
 		$("#addReplyBtn").on("click", function(e) {
 			
 			modal.find("input").val("");
 			modalInputReplyDate.closest("div").hide();
+			modalInputStar.hide();
 			modal.find("button[id !='modalCloseBtn']").hide();
 			
 			modalRegisterBtn.show();
+			
+			// 별 출력
+			var str = "";
+			
+			for (var i = 1; i <= 5; i++) {
+				
+				str += '<i class="fa fa-star fa-fw"></i>'
+				
+			}
+			
+			// 화면에 별 출력
+			$(".make_star").html(str);
 			
 			//$(".modal").modal("show");
 			modal.modal("show");
@@ -294,10 +318,25 @@
 		
 		modalRegisterBtn.on("click", function(e) {
 			
+			if (!modalInputReply.val()) {
+				
+				alert("리뷰를 입력하세요");
+				return false;
+				
+			}
+			
+			if (!modalInputStar.val()) {
+				
+				alert("별점을 입력하세요");
+				return false;
+				
+			}
+			
 			var reply = {
 					reply: modalInputReply.val(),
 					replyer: modalInputReplyer.val(),
-					mno: mnoValue
+					mno: mnoValue,
+					star: modalInputStar.val()
 			};
 			
 			replyService.add(reply, function(result) {
@@ -326,9 +365,30 @@
 				modalInputReplyDate.closest("div").show();
 				modal.data("rno", reply.rno);
 				
+				modalInputStar.hide();
 				modal.find("button[id != 'modalCloseBtn']").hide();
 				modalModBtn.show();
 				modalRemoveBtn.show();
+				
+				// 색 있는 별 출력 개수
+				var str = "";
+				
+				// 색 있는 별 출력
+				for (var i = 1; i <= reply.star; i++) {
+					
+					str += '<i class="fa fa-star fa-fw" style="color: rgb(255, 0, 0);"></i>';
+					
+				}
+				
+				// 색 없는 별 출력
+				for (var i = reply.star + 1; i <= 5; i++) {
+					
+					str += '<i class="fa fa-star fa-fw"></i>';
+					
+				}
+				
+				// 화면에 별 출력
+				$(".make_star").html(str);
 				
 				$(".modal").modal("show");
 				
@@ -338,7 +398,14 @@
 		
 		modalModBtn.on("click", function(e) {
 			
-			var reply = {rno:modal.data("rno"), reply:modalInputReply.val()};
+			if (!modalInputReply.val()) {
+				
+				alert("리뷰를 입력하세요");
+				return false;
+				
+			}
+			
+			var reply = {rno:modal.data("rno"), reply:modalInputReply.val(), star: modalInputStar.val()};
 			
 			replyService.update(reply, function(result) {
 				
@@ -447,7 +514,22 @@
 			
 			showList(pageNum);
 			
-		})
+		});
+		
+		
+		// 별을 누르면 별점을 알려주는 함수
+       	$(".make_star").on("click", "i", function(e) {       		
+       		
+			var targetNum = $(this).index() + 1;
+			
+			console.log(targetNum);
+			
+			$('.make_star i').css({color: '#000'});
+			$('.make_star i:nth-child(-n+' + targetNum + ')').css({color: '#F00'});
+			
+			modalInputStar.val(targetNum);
+			
+		});
 
 	});
     </script>
