@@ -316,7 +316,21 @@
 			
 		});
 		
-		modalRegisterBtn.on("click", function(e) {			
+		modalRegisterBtn.on("click", function(e) {
+			
+			if (!modalInputReply.val()) {
+				
+				alert("리뷰를 입력하세요");
+				return false;
+				
+			}
+			
+			if (!modalInputStar.val()) {
+				
+				alert("별점을 입력하세요");
+				return false;
+				
+			}
 			
 			var reply = {
 					reply: modalInputReply.val(),
@@ -383,6 +397,13 @@
 		});
 		
 		modalModBtn.on("click", function(e) {
+			
+			if (!modalInputReply.val()) {
+				
+				alert("리뷰를 입력하세요");
+				return false;
+				
+			}
 			
 			var reply = {rno:modal.data("rno"), reply:modalInputReply.val(), star: modalInputStar.val()};
 			

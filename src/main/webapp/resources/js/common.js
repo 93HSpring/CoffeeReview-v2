@@ -8,14 +8,14 @@ $(document).ready(function() {
 		
 		if (!searchForm.find("option:selected").val()) {
 			
-			alert("카페를 선택하세요")
+			alert("카페를 선택하세요");
 			return false;
 			
 		}
 		
 		if (!searchForm.find("input[name='keyword']").val()) {
 			
-			alert("키워드를 입력하세요")
+			alert("키워드를 입력하세요");
 			return false;
 			
 		}
