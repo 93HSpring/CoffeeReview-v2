@@ -4,6 +4,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coffeereview.mapper.UserMapper">
 
+<!--
+
+하나의 UserVO 인스턴스는 내부적으로 여러 개의 AuthVO를 가지는데, 이를 흔히 1+N관계라고 합니다.
+MyBatis의 ResultMap을 이용하면 하나의 쿼리로 UserVO와 내부의 AuthVO의 리스트까지 함께 처리할 수 있습니다.
+
+ -->
+
+<resultMap type="com.coffeereview.domain.UserVO" id="userMap">
+	<id property="uid" column="uid"/>
+	<result property="password" column="password"/>
+	<result property="name" column="name"/>
+	<result property="nickname" column="nickname"/>
+	<result property="age" column="age"/>
+	<result property="gender" column="gender"/>
+	<result property="phonenum" column="phonenum"/>
+	<result property="email" column="email"/>
+	<collection property="authList" resultMap="authMap"></collection>
+</resultMap>
+
+<resultMap type="com.coffeereview.domain.AuthVO" id="AuthMap">
+	<result property="uid" column="uid"/>
+	<result property="auth" column="auth"/>
+</resultMap>
+
 <insert id="insertUser" >
 	insert into tbl_users (uid, password, name, nickname, age, gender, phonenum, email, address)
 	values (#{uid}, #{password}, #{name}, #{nickname}, #{age}, #{gender}, #{phonenum}, #{email}, #{address})
@@ -11,6 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="readUser" resultType="com.coffeereview.domain.UserVO">
 	select * from tbl_users where uid = #{uid}
+</select>
+
+<select id="readAuth" resultMap="userMap">
+	select
+		user.uid, password, name, nickname, age, gender, phonenum, email, address, regdate, auth
+	from
+		tbl_users user
+	left outer join
+		tbl_user_auth
+	on
+		user.uid = auth.uid
+	where user.uid = #{uid}
 </select>
 
 <delete id="deleteUser" >

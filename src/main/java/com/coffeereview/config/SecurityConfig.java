@@ -1,18 +1,24 @@
 package com.coffeereview.config;
 
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.coffeereview.security.CustomLoginSuccessHandler;
+import com.coffeereview.security.CustomUserDetailsService;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -30,6 +36,9 @@ import lombok.extern.log4j.Log4j;
 @EnableWebSecurity // 스프링 MVC와 스프링 시큐리티를 결합하는 용도
 @Log4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	
+	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{

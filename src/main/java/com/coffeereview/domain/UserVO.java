@@ -1,6 +1,7 @@
 package com.coffeereview.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,6 +15,7 @@ import lombok.Data;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.11.21        Goonoo Jang       최초 생성
+* 2020.11.29		Goonoo Jang		  password, authList 추가
 */
 @Data // Lombok을 이용하여 생성자, getter/setter, toString()등을 만들어내는 Annotation
 public class UserVO {
@@ -27,6 +29,8 @@ public class UserVO {
 	private String phonenum;
 	private String email;
 	private String address;
+	
 	private Date regdate;
+	private List<AuthVO> authList;
 
 }
