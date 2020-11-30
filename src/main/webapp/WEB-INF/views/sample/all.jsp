@@ -21,6 +21,13 @@
 	
 	</sec:authorize>
 	
+	<!-- 인증된 사용자면 true -->
+	<sec:authorize access="isAuthenticated()">
+	
+		<a href="/customLogout">로그아웃</a>
+	
+	</sec:authorize>
+	
 	<a href="/customLogout">Logout</a>
 </body>
 </html>

@@ -37,17 +37,28 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	@Setter(onMethod_ = { @Autowired })
+	private DataSource dataSource; // 라이브러리 맞는지 확인
 	
+	@Bean
+	public UserDetailsService customUserService() {
+		return new CustomUserDetailsService();
+	}
 	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(customUserService()).
+		passwordEncoder(passwordEncoder());
+		
+		/*
 		log.info("configure.........................................");
 		auth.inMemoryAuthentication()
 		.withUser("admin").password("{noop}admin").roles("ADMIN");
 		
 		auth.inMemoryAuthentication()
 		.withUser("member").password("$2a$10$QYs3vq4dljdsaJC8Sl4i../59c7X8p.M9Chkd/OgqjoAvJRNC72jK").roles("MEMBER");
+		*/
 	}
 	
 	@Override
