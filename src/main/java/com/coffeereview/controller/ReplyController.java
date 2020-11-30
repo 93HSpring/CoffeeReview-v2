@@ -34,7 +34,8 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       CRUD 기능 구현
 * 2020.11.26        SeongPyo Jo       댓글 페이징과 댓글 수 처리 메쏘드 추가(getList)
-* 2020.11.26        SeongPyo Jo       리뷰 생성, 삭제, 수정시 별점 평균이 수정되는 기능 추가(updateStar)        
+* 2020.11.30        SeongPyo Jo       리뷰 생성, 삭제, 수정시 별점 평균이 수정되는 기능 추가(updateStar)
+* 2020.11.26        SeongPyo Jo       리뷰 삭제 시 오류나는 문제 해결(리뷰 삭제 전 get(rno) 수행)         
 */
 @RequestMapping("/replies/")
 @RestController
@@ -87,9 +88,9 @@ public class ReplyController {
 		
 		log.info("remove : " + rno);
 		
-		int removeCount = service.remove(rno);
+		ReplyVO vo = service.get(rno);		
 		
-		ReplyVO vo = service.get(rno);
+		int removeCount = service.remove(rno);
 		
 		service.updateStar(vo.getMno());
 		
