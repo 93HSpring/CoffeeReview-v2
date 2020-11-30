@@ -414,6 +414,9 @@
             // 현재 입력한 문자의 바이트 수를 체크하여 표시
             $('#modalMessagebyte').text(totalByte);
             
+            // input 별점 값 세팅
+            modalInputStar.val(reply.star);
+            
             // 색 있는 별 출력 개수
             var str = "";
             
