@@ -15,9 +15,20 @@ import lombok.extern.log4j.Log4j;
 
 // 로그인 한 사용자에 부여된 권한 Authentication 객체를 이용해서
 // 사용자가 가진 모든 권한을 문자열로 체크합니다. 
+/**
+* @packageName	: com.coffeereview.security
+* @fileName		: CustomLoginSuccessHandler.java
+* @author		: Goonoo Jang
+* @date			: 2020.12.01
+* @description	:
+* ===========================================================
+* DATE              AUTHOR             NOTE
+* -----------------------------------------------------------
+* 2020.12.01        Goonoo Jang       최초 생성
+*/
 @Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
-
+ 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException{
 		
