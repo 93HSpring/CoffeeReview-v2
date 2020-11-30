@@ -329,6 +329,9 @@
          
          modalRegisterBtn.show();
          
+         // 글자 수를 0으로 초기화
+         $('#modalMessagebyte').text("0"); 
+         
          // 별 출력
          var str = "";
          
@@ -591,7 +594,7 @@
          }
          
          // 현재 입력한 문자의 바이트 수를 체크하여 표시
-         $('#modalMessagebyte').text(totalByte);          
+         $('#modalMessagebyte').text(totalByte);   
        });
 
    });
