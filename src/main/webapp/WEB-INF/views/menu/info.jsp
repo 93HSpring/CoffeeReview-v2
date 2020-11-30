@@ -124,6 +124,17 @@
     					<label>Reply Date</label>
     					<input class="form-control" name="replyDate" value="">
     				</div>
+    				<div class="form-group">
+    					<label>Reply Star</label>
+    					<div class="make_star text-center" style="font-size: 3em;">
+							<i class="fa fa-star fa-fw"></i>
+							<i class="fa fa-star fa-fw"></i>
+							<i class="fa fa-star fa-fw"></i>
+							<i class="fa fa-star fa-fw"></i>
+							<i class="fa fa-star fa-fw"></i>	
+						</div>
+						<input class="form-control" name="star" value="0">
+    				</div>
     			</div>
     			<div class="modal-footer">
     				<button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
@@ -270,19 +281,24 @@
 		
 		// 리뷰 Modal 처리
 		var modal = $(".modal");
-		var modalInputReply = modal.find("input[name='reply']");
-		var modalInputReplyer = modal.find("input[name='replyer']");
-		var modalInputReplyDate = modal.find("input[name='replyDate']");
+		var modalInputReply = modal.find("input[name=reply]");
+		var modalInputReplyer = modal.find("input[name=replyer]");
+		var modalInputReplyDate = modal.find("input[name=replyDate]");
+		var modalInputStar = modal.find("input[name=star]");
 		
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
 		var modalRegisterBtn = $("#modalRegisterBtn");
 		var modalCloseBtn = $("#modalCloseBtn");
 		
+		// 별점 기능 처리
+		//var starNum = 0;
+		
 		$("#addReplyBtn").on("click", function(e) {
 			
 			modal.find("input").val("");
 			modalInputReplyDate.closest("div").hide();
+			modalInputStar.hide();
 			modal.find("button[id !='modalCloseBtn']").hide();
 			
 			modalRegisterBtn.show();
@@ -297,7 +313,8 @@
 			var reply = {
 					reply: modalInputReply.val(),
 					replyer: modalInputReplyer.val(),
-					mno: mnoValue
+					mno: mnoValue,
+					star: modalInputStar.val()
 			};
 			
 			replyService.add(reply, function(result) {
@@ -447,7 +464,22 @@
 			
 			showList(pageNum);
 			
-		})
+		});
+		
+		
+		// 별을 누르면 별점을 알려주는 함수
+       	$('.make_star i').on("click", function(e) {
+       		
+			var targetNum = $(this).index() + 1;
+			
+			console.log(targetNum);
+			
+			$('.make_star i').css({color: '#000'});
+			$('.make_star i:nth-child(-n+' + targetNum + ')').css({color: '#F00'});
+			
+			modalInputStar.val(targetNum);
+			
+		});
 
 	});
     </script>
