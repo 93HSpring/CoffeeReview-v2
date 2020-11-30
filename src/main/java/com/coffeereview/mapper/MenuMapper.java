@@ -26,6 +26,7 @@ import com.coffeereview.domain.MenuVO;
 * 2020.11.23        SeongPyo Jo       페이징 처리를 위한 메쏘드 추가 (getMenuListWithPaging)
 * 2020.11.23        SeongPyo Jo       각 카페별 메뉴들의 총 개수를 구하는 메쏘드 추가 (getTotalCount)
 * 2020.11.29        SeongPyo Jo       메뉴별 리뷰의 개수를 수정할 수 있는 메쏘드 추가 (updateReplyCnt)
+* 2020.11.30        SeongPyo Jo       별점 평균을 수정하는 메쏘드 추가(updateReplyStar)
 */
 
 public interface MenuMapper {
@@ -40,5 +41,7 @@ public interface MenuMapper {
 	public int getTotalCount(Criteria cri);
 	
 	public void updateReplyCnt(@Param("mno") Long mno, @Param("amount") int amount);
+	
+	public void updateReplyStar(@Param("mno") Long mno, @Param("star_avg") Double star_avg);
 	
 }

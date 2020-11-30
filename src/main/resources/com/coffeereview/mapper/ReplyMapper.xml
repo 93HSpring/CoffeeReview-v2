@@ -78,5 +78,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 		
 	</select>
+	
+	<select id="getStarAvgByMno" resultType="double">
+	
+		<![CDATA[
+			select
+				ifnull(avg(star), 0)
+			from
+				tbl_reply
+			where
+				mno = #{mno}
+		]]>
+		
+	</select>
 
 </mapper>

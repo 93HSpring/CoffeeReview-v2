@@ -17,6 +17,7 @@ import lombok.Getter;
 * -----------------------------------------------------------
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       댓글 페이징과 댓글 수 처리 변수 추가
+* 2020.11.30        SeongPyo Jo       메뉴의 별점 평균 변수 추가
 */
 @Data
 @AllArgsConstructor
@@ -25,5 +26,6 @@ public class ReplyPageDTO {
 	
 	private int replyCnt;
 	private List<ReplyVO> list;
+	private Double starAvg;
 
 }

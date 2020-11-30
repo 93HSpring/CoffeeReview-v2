@@ -67,8 +67,8 @@
                              </div>
                           </div>
                           <div class="panel-footer text-center info-star">
-							<i class="fa fa-star fa-fw"></i>
-							<c:out value="${menuInfo.star_avg}" />
+							<i class="info-menu-star fa fa-star fa-fw"></i>
+							<span class="print-star-num"></span>
                           </div>
          
                        </div>
@@ -236,9 +236,10 @@
          
          console.log("show list " + page);
          
-         replyService.getList({mno:mnoValue, page:page||1}, function(replyCnt, list) {
+         replyService.getList({mno:mnoValue, page:page||1}, function(replyCnt, starAvg, list) {
             
             console.log("replyCnt : " + replyCnt);
+            console.log("starAvg : " + starAvg);
             console.log("list : " + list);
             console.log(list);
             
@@ -251,6 +252,13 @@
                showList(pageNum);
                return;
                
+            }
+            
+            if (starAvg == 0) {
+            	$(".print-star-num").html("0.0");
+            }
+            else {
+            	$(".print-star-num").html(starAvg.toFixed(1));
             }
             
             var str = "";
@@ -289,7 +297,7 @@
                
             }
             
-            replyUL.html(str);
+            replyUL.html(str);           
             
             showReplyPage(replyCnt);
             

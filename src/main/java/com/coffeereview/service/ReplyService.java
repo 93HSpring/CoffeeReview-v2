@@ -18,6 +18,7 @@ import com.coffeereview.domain.ReplyVO;
 * 2020.11.26        SeongPyo Jo       최초 생성
 * 2020.11.26        SeongPyo Jo       CRUD 기능 구현
 * 2020.11.26        SeongPyo Jo       댓글 페이징과 댓글 수 처리 메쏘드 추가(getListPage)
+* 2020.11.30        SeongPyo Jo       별점 평균을 수정하는 메쏘드 추가(updateStar)
 */
 public interface ReplyService {
 	
@@ -32,5 +33,7 @@ public interface ReplyService {
 	public List<ReplyVO> getList(Criteria cri, Long mno);
 	
 	public ReplyPageDTO getListPage(Criteria cri, Long mno);
+	
+	public void updateStar(Long mno);
 
 }
