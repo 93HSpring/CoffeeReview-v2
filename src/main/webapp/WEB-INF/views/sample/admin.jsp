@@ -23,14 +23,12 @@
 	
 	<p>사용자이름 : <sec:authentication property="principal.user.uid"/></p>
 	<!-- CustomUser객체의 getMember()의 uid -->
-	
-	<p>사용자아이디 : <sec:authentication property="principal.uid"/></p>
-	<!-- CustomUser객체의 uid -->
-	
+
+	<p>사용자아이디 : <sec:authentication property="principal.username"/></p>
+	<!-- CustomUser객체의 uid (username이라는 고유값으로 받아와야한다) -->
+ 
 	<p>사용자권한리스트 : <sec:authentication property="principal.user.authList"/></p>
 	<!-- CustomUser객체의 authList -->
-	
-	
 	
 	<a href="/customLogout">Logout</a>
 </body>

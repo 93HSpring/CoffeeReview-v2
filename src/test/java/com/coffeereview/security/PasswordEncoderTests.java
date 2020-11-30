@@ -23,7 +23,7 @@ public class PasswordEncoderTests {
 	@Test
 	public void testEncode() {
 		
-		String str = "member";
+		String str = "pw00";
 		
 		String enStr = pwEncoder.encode(str);
 		
