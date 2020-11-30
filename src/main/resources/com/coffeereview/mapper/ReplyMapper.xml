@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<![CDATA[
 			select
-				avg(star)
+				ifnull(avg(star), 0)
 			from
 				tbl_reply
 			where

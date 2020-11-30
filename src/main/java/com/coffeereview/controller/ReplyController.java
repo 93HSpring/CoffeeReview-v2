@@ -60,8 +60,7 @@ public class ReplyController {
 	}
 	
 	@GetMapping(value = "/pages/{mno}/{page}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("mno") Long mno) {
-		
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("mno") Long mno) {		
 		
 		// 10개의 댓글 페이징
 		Criteria cri = new Criteria(page, 10);
