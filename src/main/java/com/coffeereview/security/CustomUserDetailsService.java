@@ -12,6 +12,17 @@ import com.coffeereview.security.domain.CustomUser;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/**
+* @packageName	: com.coffeereview.security
+* @fileName		: CustomUserDetailsService.java
+* @author		: Goonoo Jang
+* @date			: 2020.12.01
+* @description	:
+* ===========================================================
+* DATE              AUTHOR             NOTE
+* -----------------------------------------------------------
+* 2020.12.01        Goonoo Jang       최초 생성
+*/
 @Log4j
 public class CustomUserDetailsService implements UserDetailsService{
 	

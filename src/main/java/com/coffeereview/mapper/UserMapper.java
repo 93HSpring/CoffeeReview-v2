@@ -14,6 +14,7 @@ import com.coffeereview.domain.UserVO;
 * 2020.11.21        Goonoo Jang       최초 생성
 * 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
 * 2020.11.29		Goonoo Jang		  'password' column 추가로 인한 insertUser() 수정
+* 2020.12.01		Goonoo Jang 	  Spring Security 적용으로 인한 readUser() 수정
 */
 
 public interface UserMapper {
