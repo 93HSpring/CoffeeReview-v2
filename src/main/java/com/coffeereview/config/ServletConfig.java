@@ -18,9 +18,10 @@ import org.springframework.web.servlet.view.JstlView;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.10.29        SeongPyo Jo       최초 생성
+* 2020.11.30        SeongPyo Jo       예외 처리를 위한 exception 패키지 스캔 추가
 */
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.coffeereview.controller" })
+@ComponentScan(basePackages = { "com.coffeereview.controller", "com.coffeereview.exception" })
 public class ServletConfig implements WebMvcConfigurer {
 
 	@Override
