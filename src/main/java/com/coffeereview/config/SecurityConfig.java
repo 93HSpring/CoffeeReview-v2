@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.coffeereview.security.CustomLoginSuccessHandler;
 import com.coffeereview.security.CustomUserDetailsService;
@@ -81,6 +83,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.invalidateHttpSession(true)
 		.deleteCookies("remember-me", "JSESSION_ID");
 		// 쿠키 삭제까지
+		
+		http.rememberMe()
+		.key("coffeereview")
+		.tokenRepository(persistentTokenRepository())
+		.tokenValiditySeconds(604800);
+	}
+	
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+		repo.setDataSource(dataSource);
+		return repo;
 	}
 
 
