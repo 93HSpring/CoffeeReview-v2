@@ -127,13 +127,9 @@
     				<div class="form-group">
     					<label>Reply Star</label>
     					<div class="make_star text-center" style="font-size: 3em;">
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star fa-fw"></i>
-							<i class="fa fa-star fa-fw"></i>	
+    						
 						</div>
-						<input class="form-control" name="star" value="0">
+						<input class="form-control" name="star">
     				</div>
     			</div>
     			<div class="modal-footer">
@@ -303,12 +299,24 @@
 			
 			modalRegisterBtn.show();
 			
+			// 별 출력
+			var str = "";
+			
+			for (var i = 1; i <= 5; i++) {
+				
+				str += '<i class="fa fa-star fa-fw"></i>'
+				
+			}
+			
+			// 화면에 별 출력
+			$(".make_star").html(str);
+			
 			//$(".modal").modal("show");
 			modal.modal("show");
 			
 		});
 		
-		modalRegisterBtn.on("click", function(e) {
+		modalRegisterBtn.on("click", function(e) {			
 			
 			var reply = {
 					reply: modalInputReply.val(),
@@ -343,9 +351,30 @@
 				modalInputReplyDate.closest("div").show();
 				modal.data("rno", reply.rno);
 				
+				modalInputStar.hide();
 				modal.find("button[id != 'modalCloseBtn']").hide();
 				modalModBtn.show();
 				modalRemoveBtn.show();
+				
+				// 색 있는 별 출력 개수
+				var str = "";
+				
+				// 색 있는 별 출력
+				for (var i = 1; i <= reply.star; i++) {
+					
+					str += '<i class="fa fa-star fa-fw" style="color: rgb(255, 0, 0);"></i>';
+					
+				}
+				
+				// 색 없는 별 출력
+				for (var i = reply.star + 1; i <= 5; i++) {
+					
+					str += '<i class="fa fa-star fa-fw"></i>';
+					
+				}
+				
+				// 화면에 별 출력
+				$(".make_star").html(str);
 				
 				$(".modal").modal("show");
 				
@@ -355,7 +384,7 @@
 		
 		modalModBtn.on("click", function(e) {
 			
-			var reply = {rno:modal.data("rno"), reply:modalInputReply.val()};
+			var reply = {rno:modal.data("rno"), reply:modalInputReply.val(), star: modalInputStar.val()};
 			
 			replyService.update(reply, function(result) {
 				
@@ -468,7 +497,7 @@
 		
 		
 		// 별을 누르면 별점을 알려주는 함수
-       	$('.make_star i').on("click", function(e) {
+       	$(".make_star").on("click", "i", function(e) {       		
        		
 			var targetNum = $(this).index() + 1;
 			

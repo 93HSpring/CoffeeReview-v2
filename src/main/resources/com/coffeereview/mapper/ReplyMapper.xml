@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update
 			tbl_reply
 		set
-			reply = #{reply}, updatedate = now()
+			reply = #{reply}, star = #{star}, updatedate = now()
 		where
 			rno = #{rno}
 		
