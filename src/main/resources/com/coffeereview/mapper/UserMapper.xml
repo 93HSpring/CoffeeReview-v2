@@ -37,6 +37,18 @@ MyBatis의 ResultMap을 이용하면 하나의 쿼리로 UserVO와 내부의 Aut
 	select * from tbl_users where uid = #{uid}
 </select>
 
+<select id="readAuth" resultMap="userMap">
+	select
+		user.uid, password, name, nickname, age, gender, phonenum, email, address, regdate, auth
+	from
+		tbl_users user
+	left outer join
+		tbl_user_auth
+	on
+		user.uid = auth.uid
+	where user.uid = #{uid}
+</select>
+
 <delete id="deleteUser" >
 	delete from tbl_users where uid = #{uid}
 </delete>
