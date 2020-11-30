@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+p {
+	word-break:break-all;
+}
+
 a { 
 	color: #000;
 	text-decoration:none !important;
