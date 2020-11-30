@@ -48,7 +48,7 @@ public class CommonController {
 	}
 	
 	// 로그아웃을 결정하는 페이지에 대한 메소드
-	// 로그아웃 시 추가적인 작업을 해야 한다면 logoutSuccessHandler를 정의해서 처리한다.
+	// 로그아웃 시 추가적인 작업을 해야 한다면 logoutSuccessHandler를 	정의해서 처리한다.
 	@GetMapping("/customLogout")
 	public void logoutGET() {
 		
