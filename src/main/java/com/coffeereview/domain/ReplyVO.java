@@ -27,6 +27,6 @@ public class ReplyVO {
 	private Date replyDate;
 	private Date updateDate;
 	
-	private int star;
+	private Integer star;
 	
 }

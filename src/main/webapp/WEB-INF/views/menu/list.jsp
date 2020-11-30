@@ -34,8 +34,8 @@
 	                        	<div class="panel-body p-0">
 	                        		<img src='/menu/display?menuName=STARBUCKS/<c:out value="${menuInfo.menu}"/>' class="full-width">
 	                        	</div>
-	                        	<div class="panel-footer text-center">
-	                        		<p class="fa fa-star m-0" />
+	                        	<div class="panel-footer list-star text-center">
+	                        		<i class="fa fa-star fa-fw m-0"></i>
 	                        		<c:out value="${menuInfo.star_avg}" />
 	                        		<b>[ <c:out value="${menuInfo.replyCnt}" /> ]</b>
 	                        	</div>
