@@ -24,9 +24,9 @@ public class ReplyVO {
 	
 	private String reply;
 	private String replyer;
+	private Integer star;
+	
 	private Date replyDate;
 	private Date updateDate;
-	
-	private int star;
 	
 }

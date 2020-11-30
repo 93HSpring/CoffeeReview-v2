@@ -7,9 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert">
 		
 		insert into 
-			tbl_reply (mno, reply, replyer)
+			tbl_reply (mno, reply, replyer, star)
 		values
-			(#{mno}, #{reply}, #{replyer})
+			(#{mno}, #{reply}, #{replyer}, #{star})
 		
 	</insert>
 	
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update
 			tbl_reply
 		set
-			reply = #{reply}, updatedate = now()
+			reply = #{reply}, star = #{star}, updatedate = now()
 		where
 			rno = #{rno}
 		
@@ -71,6 +71,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select
 				count(rno)
+			from
+				tbl_reply
+			where
+				mno = #{mno}
+		]]>
+		
+	</select>
+	
+	<select id="getStarAvgByMno" resultType="double">
+	
+		<![CDATA[
+			select
+				ifnull(avg(star), 0)
 			from
 				tbl_reply
 			where

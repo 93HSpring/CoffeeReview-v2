@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+p {
+	word-break:break-all;
+}
+
 a { 
 	color: #000;
 	text-decoration:none !important;
@@ -21,4 +25,20 @@ a:hover {
 .full-width {
 	width: 100%;
 	height: auto;
+}
+
+.info-star {	
+	font-size: 3em;
+}
+
+.info-star i {
+	color: rgb(255, 0, 0);
+}
+
+.list-star i {
+	color: rgb(255, 0, 0);
+}
+
+.make_star {
+	font-size: 3em;	
 }
