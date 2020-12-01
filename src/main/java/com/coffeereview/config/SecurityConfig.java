@@ -84,6 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.invalidateHttpSession(true)
 		.deleteCookies("remember-me", "JSESSION_ID");
 		// 쿠키 삭제까지
+		// 로그아웃 오류 확인
 		
 		http.rememberMe()
 		.key("coffeereview")
