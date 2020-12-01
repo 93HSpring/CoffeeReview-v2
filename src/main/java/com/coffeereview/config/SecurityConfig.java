@@ -14,10 +14,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.coffeereview.security.CustomLoginSuccessHandler;
+import com.coffeereview.security.CustomLogoutSuccessHandler;
 import com.coffeereview.security.CustomUserDetailsService;
 
 import lombok.Setter;
@@ -81,16 +83,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.logout()
 		.logoutUrl("/customLogout")
+		.logoutSuccessUrl("/")
+		//.logoutSuccessHandler(logoutSuccessHandler())
 		.invalidateHttpSession(true)
 		.deleteCookies("remember-me", "JSESSION_ID");
+		
 		// 쿠키 삭제까지
-		// 로그아웃 오류 확인
+		// 참고블로그
+		// https://baejangho.com/entry/Spring-Security-Logout
+		
 		
 		http.rememberMe()
 		.key("coffeereview")
 		.tokenRepository(persistentTokenRepository())
 		.tokenValiditySeconds(604800);
 	}
+	
 	
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
@@ -100,9 +108,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 
+	// 로그인 성공시 처리
 	@Bean
 	public AuthenticationSuccessHandler loginSuccessHandler() {
 		return new CustomLoginSuccessHandler();
+	}
+	
+	// 로그아웃 성공시 처리
+	@Bean
+	public LogoutSuccessHandler logoutSuccessHandler() {
+		return new CustomLogoutSuccessHandler();
 	}
 	
 	// JDBC나 복잡한 구성을 사용하기 위해서 PasswordEncoder를 미리 준비
