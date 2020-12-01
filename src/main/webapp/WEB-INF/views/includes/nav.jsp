@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+    
 <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -13,7 +16,12 @@
             </div>
             <!-- /.navbar-header -->
 
+			<!-- navbar-top-links -->
+
             <ul class="nav navbar-top-links navbar-right">
+				
+            	
+            
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -222,6 +230,8 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
+
+
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
