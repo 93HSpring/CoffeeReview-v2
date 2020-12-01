@@ -31,6 +31,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.29        SeongPyo Jo       리뷰 개수 처리를 위한 register, remove 트랜잭션 추가 및 리뷰 수를 수정하는 기능 추가
 * 2020.11.30        SeongPyo Jo       별점 평균을 수정하는 메쏘드 추가(updateStar)
 * 2020.11.30        SeongPyo Jo       getListPage에 별점 평균 파라미터 추가
+* 2020.12.01        SeongPyo Jo       getListPage에 updateStar 기능 추가 및 updateStar 메쏘드 주석 처리
 */
 @Service
 @Log4j
@@ -98,21 +99,33 @@ public class ReplyServiceImpl implements ReplyService {
 
 	}
 	
+	@Transactional
 	@Override
 	public ReplyPageDTO getListPage(Criteria cri, Long mno) {
 		
-		return new ReplyPageDTO(mapper.getCountByMno(mno), mapper.getListWithPaging(cri, mno), mapper.getStarAvgByMno(mno));
+		Double starAvg =  mapper.getStarAvgByMno(mno);
+		
+		log.info("starAvg : " + starAvg);
+		
+		menuMapper.updateReplyStar(mno, starAvg);
+		
+		return new ReplyPageDTO(mapper.getCountByMno(mno), starAvg, mapper.getListWithPaging(cri, mno));
 		
 	}
 	
+	/*
 	@Transactional
 	@Override
 	public void updateStar(Long mno) {
 		
 		// 별점 평균 업데이트
 		Double starAvg =  mapper.getStarAvgByMno(mno);
+		
+		log.info("starAvg : " + starAvg);
+		
 		menuMapper.updateReplyStar(mno, starAvg);
 		
 	}
+	*/
 
 }
