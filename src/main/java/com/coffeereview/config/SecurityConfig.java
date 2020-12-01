@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(customUserService()).
-		passwordEncoder(passwordEncoder());
+			passwordEncoder(passwordEncoder());
 		
 		/*
 		log.info("configure.........................................");
@@ -84,6 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.invalidateHttpSession(true)
 		.deleteCookies("remember-me", "JSESSION_ID");
 		// 쿠키 삭제까지
+		// 로그아웃 오류 확인
 		
 		http.rememberMe()
 		.key("coffeereview")
