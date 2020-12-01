@@ -25,6 +25,7 @@ import lombok.extern.log4j.Log4j;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.12.01        Goonoo Jang       최초 생성
+* 2020.12.01        Goonoo Jang       권한에 상관없이 home.jsp로 redirect되도록 수정
 */
 @Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
@@ -44,6 +45,8 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		log.warn("ROLE NAME: " + roleNames);
 
+		
+		/*
 		if (roleNames.contains("ROLE_ADMIN")) {
 
 			response.sendRedirect("/sample/admin"); // 사용자가 ROLE_ADMIN 권한을 가진 경우
@@ -55,8 +58,8 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 			response.sendRedirect("/sample/member"); // 사용자가 ROLE_MEMBER 권한을 가진 경우
 			return;
 		}
-		
-		
+		*/
+		// 권한에 상관없이 메인화면으로 가도록
 		response.sendRedirect("/");
 	}
 }

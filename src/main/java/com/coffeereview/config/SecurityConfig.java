@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(customUserService()).
-		passwordEncoder(passwordEncoder());
+			passwordEncoder(passwordEncoder());
 		
 		/*
 		log.info("configure.........................................");
