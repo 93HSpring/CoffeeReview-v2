@@ -264,7 +264,7 @@
             var str = "";
             if (list == null || list.length == 0) {
                
-               //replyUL.html("");
+               replyUL.html("");
                
                return;
                
