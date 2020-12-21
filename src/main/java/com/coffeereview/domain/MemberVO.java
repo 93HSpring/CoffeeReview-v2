@@ -26,11 +26,8 @@ public class MemberVO {
 	private String password;
 	private String name;
 	private String nickname;
-	private String age;
-	private Character gender;
 	private String phonenum;
 	private String email;
-	private String address;
 	private boolean enabled;
 	
 	private Date regdate;

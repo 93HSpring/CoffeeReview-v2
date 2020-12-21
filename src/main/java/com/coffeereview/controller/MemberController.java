@@ -117,8 +117,6 @@ public class MemberController {
 			fm.put("password", "asdasd");
 			fm.put("name", name);
 			fm.put("nickname", (String) response_obj.get("nickname"));
-			fm.put("age", (String) response_obj.get("age"));
-			fm.put("gender", (String) response_obj.get("gender"));
 			fm.put("email", (String) response_obj.get("email"));
 			
 			
@@ -130,7 +128,7 @@ public class MemberController {
 			model.addAttribute("gender", (String) response_obj.get("gender"));
 			model.addAttribute("email", (String) response_obj.get("email"));
 			*/
-			// phonenum, address
+			
 
 			return "redirect:register";
 		}

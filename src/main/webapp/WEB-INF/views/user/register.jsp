@@ -44,16 +44,7 @@
                                             <input type="text" class="form-control" name="nickname" placeholder="Nickname" value="${nickname }">
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="age">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" name="gender" value="${gender }">
-                                        </div>
-                                        <div class="form-group">
                                             <input type="hidden" class="form-control" name="phonenum" placeholder="PhoneNumber">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" name="address" placeholder="Address">
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" class="form-control" name="email" value="${email }">
