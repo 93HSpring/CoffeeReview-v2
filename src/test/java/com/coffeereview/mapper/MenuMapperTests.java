@@ -70,8 +70,9 @@ public class MenuMapperTests {
 	@Test
 	public void testSearch() {
 		
-		Criteria cri = new Criteria(3, 10, "");
-		
+		Criteria cri = new Criteria(1, 10);
+		cri.setCafe("STARBUCKS");
+		cri.setOrderKeyword("abc");		
 		cri.setKeyword("");
 		
 		List<MenuVO> list = mapper.getMenuListWithPaging(cri);

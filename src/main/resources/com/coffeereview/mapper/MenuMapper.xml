@@ -33,12 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test='keyword != null and keyword neq ""'>
 				menu like CONCAT('%',#{keyword},'%')
 			</if>
-		</trim>
-		<trim suffix="AND">
-			<if test='cafe != null and cafe neq ""'>
-				cafe = #{cafe}
-			</if>
-		</trim>
+		</trim>		
 	</sql>
 	
 	<select id="getMenuListWithPaging" resultType="com.coffeereview.domain.MenuVO">
@@ -49,7 +44,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM
 				(
 					SELECT
-						mno, menu, cafe, star_avg, replycnt, ROW_NUMBER() OVER(ORDER BY star_avg DESC) as rn
+						*, ROW_NUMBER() OVER(ORDER BY 
+		]]>
+		
+						<choose>
+							<when test='orderKeyword != null and orderKeyword neq""'>
+								${orderKeyword}
+							</when>
+							<otherwise>
+								star_avg
+							</otherwise>
+						</choose>
+		
+		<![CDATA[
+						DESC) as rn
 					FROM
 						tbl_menu
 					WHERE
@@ -58,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<include refid="criteria"></include>
 		
 		<![CDATA[
-						mno > 0
+				cafe = #{cafe} AND mno > 0
 		]]>
 		
 		<![CDATA[
@@ -78,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 			<include refid="criteria"></include>
 		
-			mno > 0
+			cafe = #{cafe} AND mno > 0
 	</select>
 	
 	<update id="updateReplyCnt">
