@@ -44,7 +44,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 */
 
-@Controller
+//@Controller
 @Log4j
 @RequestMapping("/user/*")
 @AllArgsConstructor

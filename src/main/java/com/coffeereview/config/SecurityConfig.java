@@ -45,22 +45,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Setter(onMethod_ = { @Autowired })
 	private DataSource dataSource; // 라이브러리 맞는지 확인
 	
-	@Autowired 
-	MemberService memberService;
+	private MemberService memberService;
 	
 	/*
 	@Bean
-	public UserDetailsService customUserService() {
-		return new CustomUserDetailsService();
+	public UserDetailsService memberService() {
+		return new MemberService();
 	}
 	*/
 	
 	
 	
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(memberService).
-			passwordEncoder(passwordEncoder());
+		//auth.userDetailsService(memberService).
+			//passwordEncoder(passwordEncoder());
 		
 		/*
 		log.info("configure.........................................");
