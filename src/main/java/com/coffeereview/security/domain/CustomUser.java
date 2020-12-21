@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.coffeereview.domain.UserVO;
+import com.coffeereview.domain.MemberVO;
 
 import lombok.Getter;
 
@@ -22,20 +22,21 @@ import lombok.Getter;
 * DATE              AUTHOR             NOTE
 * -----------------------------------------------------------
 * 2020.12.01        Goonoo Jang       최초 생성
+* 2020.12.21		Goonoo Jang		  User** -> Member** 기존 클래스명 변경
 */
 @Getter
 public class CustomUser extends User {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private UserVO user;
+	private MemberVO user;
 	
 	public CustomUser(String uid, String password, 
 			Collection<? extends GrantedAuthority> authorities) {
 		super(uid, password, authorities);
 	}
 	
-	public CustomUser(UserVO vo) {
+	public CustomUser(MemberVO vo) {
 		super(vo.getUid(), vo.getPassword(), vo.getAuthList().stream()
 				.map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
 				.collect(Collectors.toList()));

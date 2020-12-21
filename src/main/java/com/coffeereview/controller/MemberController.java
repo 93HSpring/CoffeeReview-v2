@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.coffeereview.domain.UserVO;
+import com.coffeereview.domain.MemberVO;
 import com.coffeereview.service.NaverLoginBO;
-import com.coffeereview.service.UserService;
+import com.coffeereview.service.MemberService;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +30,7 @@ import lombok.extern.log4j.Log4j;
 
 /**
 * @packageName	: com.coffeereview.controller
-* @fileName		: UserController.java
+* @fileName		: MemberController.java
 * @author		: Goonoo Jang
 * @date			: 2020.11.21
 * @description	:
@@ -41,15 +41,16 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.27		Goonoo Jang		  네이버 로그인 API 관련 메소드 추가 (login(), callback())
 * 2020.11.27		Goonoo Jang		  회원가입, 로그인, 로그아웃 메소드 추가 (register(), signup(), logout() ) 
 * 2020.11.29		Goonoo Jang		  tbl_users column 추가로 인한 callback()메소드 수정
+* 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 */
 
 @Controller
 @Log4j
 @RequestMapping("/user/*")
 @AllArgsConstructor
-public class UserController {
+public class MemberController {
 
-	private UserService service;
+	private MemberService service;
 	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
@@ -103,7 +104,7 @@ public class UserController {
 		System.out.println(name);
 		
 		// tbl_users DB에 현재 로그인된 회원이 존재하면
-		if (service.findUser(uid)) {
+		if (service.find(uid)) {
 			// 4.파싱 닉네임 세션으로 저장
 			session.setAttribute("sessionId", uid); // 세션 생성
 			session.setAttribute("sessionName", name); // 웹에 띄울 사용자 이름 저장
@@ -148,9 +149,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/signup", method = { RequestMethod.GET, RequestMethod.POST })
-	public String signupUser(@ModelAttribute UserVO vo) throws IOException{
+	public String signupUser(@ModelAttribute MemberVO vo) throws IOException{
 		
-		service.insertUser(vo);
+		service.insert(vo);
 		
 		return "redirect:user_index";
 	}
@@ -170,7 +171,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/insertUser")
-	public String insertUser(UserVO vo) throws IOException {
+	public String insertUser(MemberVO vo) throws IOException {
 		log.info("/user");
 		
 		return "home";
@@ -189,7 +190,7 @@ public class UserController {
 	
 	@GetMapping("/updateUser")
 	// UPDATE : user 정보를 갱신하기
-	public String updateUser(UserVO vo) {
+	public String updateUser(MemberVO vo) {
 		
 		
 		return "home";
