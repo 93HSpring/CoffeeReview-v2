@@ -1,10 +1,10 @@
 package com.coffeereview.mapper;
 
-import com.coffeereview.domain.UserVO;
+import com.coffeereview.domain.MemberVO;
 
 /**
 * @packageName	: com.coffeereview.mapper
-* @fileName		: UserMapper.java
+* @fileName		: MemberMapper.java
 * @author		: Goonoo Jang
 * @date			: 2020.11.21
 * @description	:
@@ -15,27 +15,28 @@ import com.coffeereview.domain.UserVO;
 * 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
 * 2020.11.29		Goonoo Jang		  'password' column 추가로 인한 insertUser() 수정
 * 2020.12.01		Goonoo Jang 	  Spring Security 적용으로 인한 readUser() 수정
+* 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 */
 
-public interface UserMapper {
+public interface MemberMapper {
 	
 	// CREATE : user를 새로 등록하기
-	public void insertUser(UserVO vo);
+	public void insert(MemberVO vo);
 	
 	// READ : Id에 해당하는 user 받아오기
-	public UserVO readUser(String uid);
+	public MemberVO read(String uid);
 	
 	// UPDATE : user 정보를 갱신하기
-	public void updateUser(UserVO vo);
+	public void update(MemberVO vo);
 	
 	// DELETE : Id에 해당하는 user 삭제하기
-	public int deleteUser(String uid);
+	public int delete(String uid);
 	
 	// Id에 해당하는 user가 존재하는지 확인하기
-	public boolean findUser(String uid);
+	public boolean find(String uid);
 	
 	// uid에 해당하는 user의 nickname을 반환
-	public String findUserNickname(String uid);
+	public String findByNickname(String uid);
 	
 	
 }

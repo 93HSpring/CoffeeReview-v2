@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.coffeereview.domain.UserVO;
+import com.coffeereview.domain.MemberVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -14,15 +14,15 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {com.coffeereview.config.RootConfig.class})
 @Log4j
-public class UserMapperTests {
+public class MemberMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
-	private UserMapper mapper;
+	private MemberMapper mapper;
 	
 	@Test
 	public void testRead() {
 		
-		UserVO vo = mapper.readUser("admin00");
+		MemberVO vo = mapper.read("admin00");
 		
 		log.info(vo);
 		
