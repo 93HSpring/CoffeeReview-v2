@@ -18,11 +18,12 @@
             <div class="row">
                 <div class="col-lg-12">                   
                    <form id='operForm' action="/menu/list" method="get">
-                      <input type='hidden' name='cafe' value='<c:out value="${cri.cafe}"/>'>
+                      <input type='hidden' name='cafe' value='<c:out value="${cri.cafe}"/>'>                      
                       <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+                      <input type='hidden' name='orderKeyword' value='<c:out value="${cri.orderKeyword}"/>'>
                       <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
-                      <!-- <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'> -->
                       <input type='hidden' id='mno' name='mno' value='<c:out value="${menuInfo.mno}"/>'>
+                      <!-- <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'> -->
                    </form>
                    
                     <h1 class="page-header">${menuInfo.cafe} <button data-oper='list' class="btn btn-info pull-right">List</button></h1>
@@ -214,6 +215,22 @@
     $(document).ready(function() {
       
       var operForm = $("#operForm");
+      
+   		// orderKeyword의 값이 없을 경우 url 파라미터에서 제거
+		if (!operForm.find("input[name=orderKeyword]").val())	{
+			
+			console.log('orderKeyword is empty');
+			operForm.find("input[name=orderKeyword]").remove();
+			
+		}
+		
+		// keyword의 값이 없을 경우 url 파라미터에서 제거
+		if (!operForm.find("input[name=keyword]").val()) {
+			
+			console.log('keyword is empty');
+			operForm.find("input[name=keyword]").remove();
+			
+		}
       
       $("button[data-oper='list']").on("click", function(e) {
 

@@ -16,6 +16,8 @@ import lombok.ToString;
 * 2020.11.23        SeongPyo Jo       최초 생성
 * 2020.11.23        SeongPyo Jo       검색 키워드 추가
 * 2020.11.23        SeongPyo Jo       리뷰 조회를 위한 생성자 추가
+* 2020.12.21        SeongPyo Jo       getPageStart 미사용으로 인한 주석 처리
+* 2020.12.21        SeongPyo Jo       정렬을 위한 변수 추가 (orderKeyword)
 */
 
 @Getter
@@ -34,6 +36,8 @@ public class Criteria {
 	private String type;
 	// 검색 키워드
 	private String keyword;
+	// 정렬 키워드
+	private String orderKeyword;
 	
 	public Criteria() {
 		
@@ -60,6 +64,7 @@ public class Criteria {
 		
 	}
 	
+	/*
 	public Criteria(int pageNum, int amount, String cafe) {
 		
 		if (pageNum <= 0) {
@@ -69,17 +74,13 @@ public class Criteria {
 			this.pageNum = pageNum;
 		}
 		
-		if (amount <= 0) {
-			this.amount = 10;
-		}
-		else {
-			this.amount = amount;
-		}
-		
+		this.amount = amount;
 		this.cafe = cafe;
 		
 	}
+	*/
 	
+	/*
 	// 시작 페이지를 반환해준다.
 	// MenuMapper.xml 에서 pageStart를 변수로 쓸 수 있다.
 	public int getPageStart() {
@@ -87,5 +88,6 @@ public class Criteria {
 		return (this.pageNum - 1) * this.amount;
 		
 	}
+	*/
 	
 }
