@@ -1,5 +1,6 @@
 package com.coffeereview.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.coffeereview.domain.UserVO;
@@ -19,6 +20,7 @@ import lombok.extern.log4j.Log4j;
 * -----------------------------------------------------------
 * 2020.11.21        Goonoo Jang       최초 생성
 * 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
+* 2020.12.21		Goonoo Jang		  대대적인 rebuilding 시작
 */
 
 @Log4j
@@ -30,11 +32,21 @@ public class UserServiceImpl implements UserService{
 	// 필요한 파라미터를 자동으로 주입할 수 있다.
 	// @AllArgsConstructor가 모든 파라미터를 이용하는 생성자를 만들어 준다.
 	private UserMapper mapper;
+	private PasswordEncoder passwordEncoder;
+	
 
 	// CREATE : user를 새로 등록하기
 	@Override
 	public void insertUser(UserVO vo) {
 		log.info("insertUser........");
+		
+		if(mapper.findUser(vo.getUid())  == true){
+			log.info("이미 존재하는 회원입니다.");
+			return;
+		}
+		
+		String encodePassword = passwordEncoder.encode(vo.getPassword());
+		
 		
 		mapper.insertUser(vo);
 	}
