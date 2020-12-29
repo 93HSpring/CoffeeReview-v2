@@ -36,6 +36,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.29        Goonoo Jang       최초 생성
 * 2020.12.01		Goonoo Jang		  Spring Security 설정 적용
 * 2020.12.21		Goonoo Jang		  CustomUserDetailsService -> MemberService 변경
+* 2020.12.29		Goonoo Jang		  bug fix를 위한 rebuilding 
 */
 @Configuration
 @EnableWebSecurity // 스프링 MVC와 스프링 시큐리티를 결합하는 용도
