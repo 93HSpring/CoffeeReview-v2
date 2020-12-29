@@ -3,20 +3,27 @@ package com.coffeereview.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.coffeereview.domain.Criteria;
+import com.coffeereview.domain.MenuVO;
 import com.coffeereview.domain.PageDTO;
 import com.coffeereview.service.MenuService;
 
@@ -45,9 +52,11 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.23        SeongPyo Jo       getMenuList 메쏘드에 각 카페별 메뉴의 총 개수를 구하는 기능 추가
 * 2020.11.27        SeongPyo Jo		  list와 info에서 검색 기능을 사용하기 위해 getMenuList에 ModelAttribute 추가
 * 2020.11.29        SeongPyo Jo       list와 info에서 amount를 컨트롤러에서 설정하도록 변경
+* 2020.12.29        SeongPyo Jo       REST 방식으로 변환 (getMenuList, getMenuInfo)
 */
 
 @Controller
+//@RestController
 @Log4j
 @RequestMapping("/menu/*")
 @AllArgsConstructor
@@ -65,6 +74,7 @@ public class MenuController {
 	}
 	*/
 	
+	/*
 	@GetMapping("/list")
 	public void getMenuList(@ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -82,7 +92,31 @@ public class MenuController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 	}
+	*/
 	
+	@GetMapping(value="/list/{cafe}/{pageNum}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Map<String, Object>> getMenuList(@PathVariable("cafe") String cafe, @PathVariable("pageNum") int pageNum, @ModelAttribute("cri") Criteria cri) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		log.info("list: " + cri);
+		
+		// 페이지당 출력 개수
+		cri.setAmount(12);
+		
+		map.put("list", service.getMenuList(cri));
+		
+		int total = service.getTotal(cri);
+		
+		log.info("total: " + total);
+		
+		map.put("pageMaker", new PageDTO(cri, total));
+		
+		return new ResponseEntity<>(map, HttpStatus.OK);
+		
+	}
+	
+	/*
 	@GetMapping("/info")
 	public void getMenuInfo(@RequestParam("mno") Long mno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -91,6 +125,19 @@ public class MenuController {
 		// 페이지당 출력 개수
 		cri.setAmount(12);
 		model.addAttribute("menuInfo", service.getMenu(mno));
+		
+	}
+	*/
+	
+	@GetMapping(value="/info/{cafe}/{mno}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<MenuVO> getMenuInfo(@PathVariable("cafe") String cafe, @PathVariable("mno") Long mno, @ModelAttribute("cri") Criteria cri, Model model) {
+		
+		log.info("/info");
+		
+		// 페이지당 출력 개수
+		cri.setAmount(12);
+
+		return new ResponseEntity<>(service.getMenu(mno), HttpStatus.OK);
 		
 	}
 	

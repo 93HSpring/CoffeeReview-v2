@@ -1,9 +1,12 @@
 package com.coffeereview.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -11,6 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.coffeereview.domain.Criteria;
+import com.google.gson.Gson;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -84,6 +90,7 @@ public class MenuControllerTests {
 	}
 	*/
 	
+	/*
 	@Test
 	public void testListPagin() throws Exception {
 		
@@ -93,6 +100,23 @@ public class MenuControllerTests {
 			.param("amount", "50")
 			.param("cafe", "STARBUCKS"))
 			.andReturn().getModelAndView().getModelMap());
+		
+	}
+	*/
+	
+	@Test
+	public void testConvert() throws Exception {
+		
+		Criteria cri = new Criteria();
+		
+		cri.setKeyword("아이스");
+		cri.setOrderKeyword("caffeine");
+		
+		String jsonStr = new Gson().toJson(cri);
+		
+		log.info(jsonStr);
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/list/STARBUCK/1").contentType(MediaType.APPLICATION_JSON).content(jsonStr)).andExpect(status().is(200)); 
 		
 	}
 	
