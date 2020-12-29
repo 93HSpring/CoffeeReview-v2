@@ -42,11 +42,12 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.27		Goonoo Jang		  회원가입, 로그인, 로그아웃 메소드 추가 (register(), signup(), logout() ) 
 * 2020.11.29		Goonoo Jang		  tbl_users column 추가로 인한 callback()메소드 수정
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
+* 2020.12.29		Goonoo Jang		  @RequestMapping("/member/*")로 변경
 */
 
-//@Controller
+@Controller
 @Log4j
-@RequestMapping("/user/*")
+@RequestMapping("/member/*")
 @AllArgsConstructor
 public class MemberController {
 
