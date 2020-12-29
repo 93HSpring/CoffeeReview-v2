@@ -152,7 +152,8 @@ public class MemberController {
 		
 		service.insert(vo);
 		
-		return "redirect:user_index";
+		// return "redirect:user_index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/logout")
