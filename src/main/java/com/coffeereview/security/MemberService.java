@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.coffeereview.domain.MemberVO;
@@ -30,7 +31,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 //@Service
 @AllArgsConstructor
-public class MemberService { // implements UserDetailsService
+public class MemberService implements UserDetailsService { 
 	// 스프링 4.3 이상에서는 단일 파라미터를 받는 생성자의 경우에는
 	// 필요한 파라미터를 자동으로 주입할 수 있다.
 	// @AllArgsConstructor가 모든 파라미터를 이용하는 생성자를 만들어 준다.
@@ -44,7 +45,7 @@ public class MemberService { // implements UserDetailsService
 	}
 	
 	// Username means uid
-	/*
+	
 	@Override
 	public UserDetails loadUserByUsername(String uid) throws UsernameNotFoundException{
 		log.warn("Load User By Uid : " + uid);
@@ -57,7 +58,7 @@ public class MemberService { // implements UserDetailsService
 		// 만일 UserVO의 인스턴스를 얻을 수 있다면 CustomUser 타입의 객체로 변환해서 반환
 		return vo == null ? null : new CustomUser(vo);
 	}
-	*/
+	
 	
 	// CRUD
 	

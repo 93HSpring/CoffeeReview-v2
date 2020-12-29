@@ -34,20 +34,24 @@
                                             <input type="hidden" class="form-control" name="uid" value="${uid }">
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="password" value="${password }">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" name="name" value="${name }">
-                                        </div>
-                                        <div class="form-group">
                                         	<label>Nickname</label>
-                                            <input type="text" class="form-control" name="nickname" placeholder="Nickname" value="${nickname }">
+                                            <input type="text" class="form-control" name="nickname" placeholder="Nickname" value="${nickname }" maxlength='10'>
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="phonenum" placeholder="PhoneNumber">
+                                        	<label>Password</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Password" value="${password }" maxlength='20'>
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="email" value="${email }">
+                                        	<label>Name</label>
+                                            <input type="text" class="form-control" name="name" placeholder="Name" value="${name }">
+                                        </div>
+                                        <div class="form-group">
+                                        	<label>PhoneNumber</label>
+                                            <input type="text" class="form-control" name="phonenum" placeholder="PhoneNumber">
+                                        </div>
+                                        <div class="form-group">
+                                        	<label>E-mail</label>
+                                            <input type="text" class="form-control" name="email" placeholder="E-mail" value="${email }">
                                         </div>
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         

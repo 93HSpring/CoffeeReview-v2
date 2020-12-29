@@ -21,6 +21,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.21        Goonoo Jang       최초 생성
 * 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
+* 2020.12.29		Goonoo Jang		  insert 수정 (Password Encoding 추가)
 */
 
 @Log4j
@@ -47,6 +48,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		String encodePassword = passwordEncoder.encode(vo.getPassword());
 		
+		vo.setPassword(encodePassword);
 		
 		mapper.insert(vo);
 	}
