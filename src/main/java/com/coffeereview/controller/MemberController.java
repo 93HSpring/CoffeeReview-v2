@@ -43,6 +43,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.29		Goonoo Jang		  tbl_users column 추가로 인한 callback()메소드 수정
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 * 2020.12.29		Goonoo Jang		  @RequestMapping("/member/*")로 변경
+* 2020.12.29		Goonoo Jang		  signupUser 수정 (uid 부재시 난수생성 추가)
 */
 
 @Controller
