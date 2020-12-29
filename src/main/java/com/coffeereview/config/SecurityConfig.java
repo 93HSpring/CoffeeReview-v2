@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeRequests()
 		.antMatchers("/menu/**").permitAll() //로그인을 하지 않은 사용자도 접근 가능한 URI
-		.antMatchers("/user/**").permitAll() //로그인을 하지 않은 사용자도 접근 가능한 URI
+		.antMatchers("/member/**").permitAll() //로그인을 하지 않은 사용자도 접근 가능한 URI
 		.antMatchers("/sample/all").permitAll() //로그인을 하지 않은 사용자도 접근 가능한 URI
 		.antMatchers("/sample/admin").access("hasRole('ROLE_ADMIN')") // 로그인 한 사용자들만이 접근할 수 있는 URI
 		.antMatchers("/sample/member").access("hasRole('ROLE_MEMBER')"); // 로그인 한 사용자들 중에서 관리자 권한을 가진 사용자만이 접근할 수 있는 URI

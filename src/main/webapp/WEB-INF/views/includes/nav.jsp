@@ -23,7 +23,7 @@
 				
 				<sec:authorize access="isAnonymous()">
 					<h1>
-						<a href="/customLogin">로그인하세요</a> <a href="/signup">회원가입</a>
+						<a href="/customLogin">로그인하세요</a> <a href="/member/register">회원가입</a>
 					</h1>
 
 				
