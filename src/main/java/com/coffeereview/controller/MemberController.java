@@ -140,6 +140,7 @@ public class MemberController {
 	public void registerUser(Model model, HttpServletRequest req) {
 		log.info("/register");
 		
+		// Naver 아이디로 로그인한 경우엔 req에 flashmap이 저장되어 있을 것 
 		Map<String, ?> flashmap = RequestContextUtils.getInputFlashMap(req);
 		if(flashmap != null) {
 			model.addAllAttributes(flashmap);
@@ -149,7 +150,10 @@ public class MemberController {
 	
 	@RequestMapping(value = "/signup", method = { RequestMethod.GET, RequestMethod.POST })
 	public String signupUser(@ModelAttribute MemberVO vo) throws IOException{
-		
+		if(vo.getUid() == "") {
+			String str = Integer.toString((int)(Math.random()*10000000)); 
+			vo.setUid(str);
+		}
 		service.insert(vo);
 		
 		// return "redirect:user_index";
