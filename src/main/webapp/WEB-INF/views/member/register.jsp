@@ -4,10 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <%@include file="../includes/header.jsp" %>
 
 <body>
+	
 
     <div id="wrapper">
 

@@ -21,8 +21,8 @@ import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.coffeereview.domain.MemberVO;
-import com.coffeereview.service.NaverLoginBO;
 import com.coffeereview.service.MemberService;
+import com.coffeereview.service.NaverLoginBO;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import lombok.AllArgsConstructor;
@@ -44,6 +44,8 @@ import lombok.extern.log4j.Log4j;
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 * 2020.12.29		Goonoo Jang		  @RequestMapping("/member/*")로 변경
 * 2020.12.29		Goonoo Jang		  signupUser 수정 (uid 부재시 난수생성 추가)
+* 2021.01.09		Goonoo Jang		  signup()에서 uid 중복처리 구현
+* 2021.01.09		Goonoo Jang		  signup()에서 한글 깨지는 부분 임시 수정
 */
 
 @Controller
@@ -148,11 +150,20 @@ public class MemberController {
 		}
 		
 	}
-	
-	@RequestMapping(value = "/signup", method = { RequestMethod.GET, RequestMethod.POST })
+	// { RequestMethod.GET, RequestMethod.POST }
+	@RequestMapping(value = "/signup", produces="text/plain; charset=UTF-8", method = RequestMethod.POST) //  produces="text/plain; charset=UTF-8",
 	public String signupUser(@ModelAttribute MemberVO vo) throws IOException{
+		
+		vo.setNickname(new String(vo.getNickname().getBytes("ISO-8859-1"), "UTF-8")); // 이유를 모르겠으나 register.jsp에서 입력된 한글값이 ISO-8859-1의 형식으로 전달됨... 임시로 수정
+		vo.setName(new String(vo.getName().getBytes("ISO-8859-1"), "UTF-8"));
+		
 		if(vo.getUid() == "") {
 			String str = Integer.toString((int)(Math.random()*10000000)); 
+			if(service.find(str) == true) {
+				do {
+					str = Integer.toString((int)(Math.random()*10000000));
+				}while(service.find(str) == true);
+			}
 			vo.setUid(str);
 		}
 		service.insert(vo);
