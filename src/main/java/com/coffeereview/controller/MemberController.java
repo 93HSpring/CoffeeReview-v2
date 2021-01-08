@@ -44,6 +44,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 * 2020.12.29		Goonoo Jang		  @RequestMapping("/member/*")로 변경
 * 2020.12.29		Goonoo Jang		  signupUser 수정 (uid 부재시 난수생성 추가)
+* 2021.01.09		Goonoo Jang		  signup()에서 uid 중복처리 구현
 */
 
 @Controller
@@ -153,6 +154,11 @@ public class MemberController {
 	public String signupUser(@ModelAttribute MemberVO vo) throws IOException{
 		if(vo.getUid() == "") {
 			String str = Integer.toString((int)(Math.random()*10000000)); 
+			if(service.find(str) == true) {
+				do {
+					str = Integer.toString((int)(Math.random()*10000000));
+				}while(service.find(str) == true);
+			}
 			vo.setUid(str);
 		}
 		service.insert(vo);

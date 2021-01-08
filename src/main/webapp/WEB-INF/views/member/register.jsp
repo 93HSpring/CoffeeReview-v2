@@ -8,7 +8,8 @@
 <%@include file="../includes/header.jsp" %>
 
 <body>
-
+	
+<% request.setCharacterEncoding("UTF-8"); %>
     <div id="wrapper">
 
 		<!-- Navigation -->
