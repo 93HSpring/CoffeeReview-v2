@@ -53,6 +53,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.27        SeongPyo Jo		  list와 info에서 검색 기능을 사용하기 위해 getMenuList에 ModelAttribute 추가
 * 2020.11.29        SeongPyo Jo       list와 info에서 amount를 컨트롤러에서 설정하도록 변경
 * 2020.12.29        SeongPyo Jo       REST 방식으로 변환 (getMenuList, getMenuInfo)
+* 2021.01.09        SeongPyo Jo       REST 방식 주석 처리 (getMenuList, getMenuInfo)
 */
 
 @Controller
@@ -74,7 +75,6 @@ public class MenuController {
 	}
 	*/
 	
-	/*
 	@GetMapping("/list")
 	public void getMenuList(@ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -92,8 +92,8 @@ public class MenuController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 	}
-	*/
 	
+	/*
 	@GetMapping(value="/list/{cafe}/{pageNum}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Map<String, Object>> getMenuList(@PathVariable("cafe") String cafe, @PathVariable("pageNum") int pageNum, @ModelAttribute("cri") Criteria cri) {
 		
@@ -115,8 +115,8 @@ public class MenuController {
 		return new ResponseEntity<>(map, HttpStatus.OK);
 		
 	}
+	*/
 	
-	/*
 	@GetMapping("/info")
 	public void getMenuInfo(@RequestParam("mno") Long mno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -127,8 +127,8 @@ public class MenuController {
 		model.addAttribute("menuInfo", service.getMenu(mno));
 		
 	}
-	*/
 	
+	/*
 	@GetMapping(value="/info/{cafe}/{mno}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<MenuVO> getMenuInfo(@PathVariable("cafe") String cafe, @PathVariable("mno") Long mno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -140,6 +140,7 @@ public class MenuController {
 		return new ResponseEntity<>(service.getMenu(mno), HttpStatus.OK);
 		
 	}
+	*/
 	
 	@GetMapping("/display")
 	@ResponseBody
