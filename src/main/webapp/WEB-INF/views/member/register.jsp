@@ -33,7 +33,8 @@
                                 <div class="col-lg-6">
                                     <form role="form" name="signup" onsubmit="return checkForm()" method="post">
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="uid" value="${uid }">
+                                        	<label>ID</label>
+                                            <input type="text" class="form-control" name="uid" value="${uid }" maxlength='10'>
                                         </div>
                                         <div class="form-group">
                                         	<label>Nickname</label>
@@ -84,6 +85,14 @@
    	<script type="text/javascript" src="/resources/js/common.js?ver=0.1.1"></script>
     <script>
     function checkForm() {
+    	const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    	 
+    	if(korean.test(document.signup.uid.value) == true) {
+    		alert("ID는 영문이어야 합니다.");
+			document.signup.uid.focus();
+			return false;
+    	}
+    	
 		if (document.signup.nickname.value == "") {
 			alert("닉네임을 입력하세요.");
 			document.signup.nickname.focus();

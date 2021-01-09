@@ -44,7 +44,7 @@ import lombok.extern.log4j.Log4j;
 @EnableWebSecurity // 스프링 MVC와 스프링 시큐리티를 결합하는 용도
 @Log4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
+	// 책 699p
 	@Setter(onMethod_ = { @Autowired })
 	private DataSource dataSource; // 라이브러리 맞는지 확인
 	
@@ -55,9 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public UserDetailsService customUserService() {
 		return new CustomUserDetailsService(null);
 	}
-	
-	
-	
 	
 	
 	@Override
