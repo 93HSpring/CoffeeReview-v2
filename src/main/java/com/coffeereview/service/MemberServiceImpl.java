@@ -22,6 +22,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.11.28		Goonoo Jang		  FindUserNickname() 생성
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
 * 2020.12.29		Goonoo Jang		  insert 수정 (Password Encoding 추가)
+* 2021.01.09		Goonoo Jang		  insert() 내부에 AuthVO 추가부분 구현
 */
 
 @Log4j
@@ -51,6 +52,8 @@ public class MemberServiceImpl implements MemberService{
 		vo.setPassword(encodePassword);
 		
 		mapper.insert(vo);
+		mapper.insert_auth(vo.getUid()); // auth 생성
+		
 	}
 	
 	// READ : Id에 해당하는 user 받아오기

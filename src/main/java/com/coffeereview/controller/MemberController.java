@@ -157,6 +157,7 @@ public class MemberController {
 		vo.setNickname(new String(vo.getNickname().getBytes("ISO-8859-1"), "UTF-8")); // 이유를 모르겠으나 register.jsp에서 입력된 한글값이 ISO-8859-1의 형식으로 전달됨... 임시로 수정
 		vo.setName(new String(vo.getName().getBytes("ISO-8859-1"), "UTF-8"));
 		
+		/* UID 난수로 구현했던 부분
 		if(vo.getUid() == "") {
 			String str = Integer.toString((int)(Math.random()*10000000)); 
 			if(service.find(str) == true) {
@@ -166,9 +167,10 @@ public class MemberController {
 			}
 			vo.setUid(str);
 		}
+		*/
+		// 중복처리기능 구현해야
 		service.insert(vo);
 		
-		// return "redirect:user_index";
 		return "redirect:/";
 	}
 	

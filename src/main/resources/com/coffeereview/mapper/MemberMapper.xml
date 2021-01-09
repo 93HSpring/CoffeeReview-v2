@@ -31,6 +31,11 @@ MyBatis의 ResultMap을 이용하면 하나의 쿼리로 UserVO와 내부의 Aut
 	values (#{uid}, #{password}, #{name}, #{nickname}, #{phonenum}, #{email})
 </insert>
 
+<insert id="insert_auth" >
+	insert into tbl_member_auth (uid, auth)
+	values (#{uid}, 'ROLE_USER')
+</insert>
+
 <select id="read" resultMap="userMap">
 	select
 		member.uid, password, name, nickname, phonenum, email, regdate, auth

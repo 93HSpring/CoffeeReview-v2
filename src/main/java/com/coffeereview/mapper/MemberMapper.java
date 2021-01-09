@@ -16,12 +16,15 @@ import com.coffeereview.domain.MemberVO;
 * 2020.11.29		Goonoo Jang		  'password' column 추가로 인한 insertUser() 수정
 * 2020.12.01		Goonoo Jang 	  Spring Security 적용으로 인한 readUser() 수정
 * 2020.12.21		Goonoo Jang		  User** -> Member** 클래스명 변경
+* 2021.01.09		Goonoo Jang		  AuthVO 추가부분 구현 - insert_auth()
 */
 
 public interface MemberMapper {
 	
 	// CREATE : user를 새로 등록하기
 	public void insert(MemberVO vo);
+	
+	public void insert_auth(String uid);
 	
 	// READ : Id에 해당하는 user 받아오기
 	public MemberVO read(String uid);
