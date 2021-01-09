@@ -33,7 +33,7 @@ MyBatis의 ResultMap을 이용하면 하나의 쿼리로 UserVO와 내부의 Aut
 
 <select id="read" resultMap="userMap">
 	select
-		user.uid, password, name, nickname, phonenum, email, regdate, auth
+		member.uid, password, name, nickname, phonenum, email, regdate, auth
 	from
 		tbl_member member
 	left outer join
