@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -19,7 +20,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 
 import com.coffeereview.security.CustomLoginSuccessHandler;
 import com.coffeereview.security.CustomLogoutSuccessHandler;
-import com.coffeereview.security.MemberService;
+import com.coffeereview.security.CustomUserDetailsService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -37,6 +38,7 @@ import lombok.extern.log4j.Log4j;
 * 2020.12.01		Goonoo Jang		  Spring Security 설정 적용
 * 2020.12.21		Goonoo Jang		  CustomUserDetailsService -> MemberService 변경
 * 2020.12.29		Goonoo Jang		  bug fix를 위한 rebuilding 
+* 2021.01.09		Goonoo Jang		  customUserService 수정으로 인한 bean 생성자 변경
 */
 @Configuration
 @EnableWebSecurity // 스프링 MVC와 스프링 시큐리티를 결합하는 용도
@@ -46,22 +48,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Setter(onMethod_ = { @Autowired })
 	private DataSource dataSource; // 라이브러리 맞는지 확인
 	
-	private MemberService memberService;
+	//private MemberService memberService;
 	
-	/*
+	
 	@Bean
-	public UserDetailsService memberService() {
-		return new MemberService();
+	public UserDetailsService customUserService() {
+		return new CustomUserDetailsService(null);
 	}
-	*/
+	
 	
 	
 	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		//auth.userDetailsService(memberService).
-			//passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserService()).
+			passwordEncoder(passwordEncoder());
 		
 		/*
 		log.info("configure.........................................");
@@ -85,8 +87,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.formLogin()
 		.loginPage("/customLogin")
-		.loginProcessingUrl("/login") // Access Denied 되었을 때 로그인 페이지로 이동
-		.successHandler(loginSuccessHandler());
+		.loginProcessingUrl("/login"); // Access Denied 되었을 때 로그인 페이지로 이동
+		//.successHandler(loginSuccessHandler());
 		
 		http.logout()
 		.logoutUrl("/customLogout")
